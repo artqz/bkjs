@@ -11,29 +11,21 @@ class Map extends Component {
     //   height: 268
     // });
     //
-    function writeMessage(message) {
+    const writeMessage = (message) => {
       text.setText(message);
       layer.draw();
     }
-    function loadImages(sources, callback) {      
-      var images = {};
-      var loadedImages = 0;
-      var numImages = 0;
-      for(var src in sources) {
-        numImages++;
-      }
+    const loadImages =(sources, callback) => {      
+      var images = {};     
       for(var src in sources) {
         images[src] = new Image();
-        images[src].onload = function() {
-          if(++loadedImages >= numImages) {
-            callback(images);
-          }
-        };        
+        images[src].onload = () => {
+          callback(images);
+        };   
         images[src].src = sources[src];
       }
     }
-    function buildStage(images) {
-      console.log(images);
+    const buildStage = (images) => {
       rooms.forEach(room => {
         let nameLayer = '_id' + room.id;
         layer.add(
@@ -48,14 +40,14 @@ class Map extends Component {
           .on('mouseout', function() {
             writeMessage('');
           })
+          .on('click', function() {
+            this.filters([Konva.Filters.Blur]);
+            writeMessage('click' + room.name);
+          })
           .cache()
           .drawHitFromCache()
         );  
       });
-           
-
-      //_id3.cache();
-      //_id3.drawHitFromCache();
 
       layer.add(text);
       stage.add(layer);
