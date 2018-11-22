@@ -2,56 +2,15 @@ import React, { Component } from 'react';
 import Konva from 'konva';
 
 class Map extends Component {
-  drawMap() {
+  drawMap() {    
     const location = this.props.location; 
     const rooms = location.rooms;
-    // const stage = new Konva.Stage({
-    //   container: 'container',
-    //   width: 500,
-    //   height: 268
-    // });
-    //
+    
     const writeMessage = (message) => {
       text.setText(message);
       layer.draw();
     }
-    const loadImages =(sources, callback) => {      
-      var images = {};     
-      for(var src in sources) {
-        images[src] = new Image();
-        images[src].onload = () => {
-          callback(images);
-        };   
-        images[src].src = sources[src];
-      }
-    }
-    const buildStage = (images) => {
-      rooms.forEach(room => {
-        let nameLayer = '_id' + room.id;
-        layer.add(
-          new Konva.Image({
-            image: images[nameLayer],
-            x: room.x,
-            y: room.y
-          })
-          .on('mouseover', function() {
-            writeMessage('mouseover ' + room.name);
-          })
-          .on('mouseout', function() {
-            writeMessage('');
-          })
-          .on('click', function() {
-            this.filters([Konva.Filters.Blur]);
-            writeMessage('click' + room.name);
-          })
-          .cache()
-          .drawHitFromCache()
-        );  
-      });
 
-      layer.add(text);
-      stage.add(layer);
-    }
     var stage = new Konva.Stage({
       container: 'container',
       width: 500,
@@ -65,43 +24,79 @@ class Map extends Component {
       y: 10,
       fontFamily: 'Calibri',
       fontSize: 24,
-      text: '',
+      text: 'hello',
       fill: 'black'
     });
-    var sources = {};
-    for(var key in rooms) {
-      sources['_id'+rooms[key].id] = rooms[key].model;
+    //Загрузка фона
+    console.log(location);
+    var imageBackground = new Image();
+    imageBackground.onload = function() {
+
+      layer.add(new Konva.Image({
+        x: 0,
+        y: 0,
+        image: imageBackground,
+        width: 500,
+        height: 268
+      })).on('click', () => {
+        console.log('pp');
+        ;
+      });
+      stage.add(layer);
     }
-    // console.log(xyz);
-    
-    // var sources = {
-    //   lion: '/assets/lion.png',
-    //   monkey: '/assets/monkey.png'
-    // };
-
-    loadImages(sources, buildStage);
+    imageBackground.src = location.background;
+    writeMessage(imageBackground.src);
+    layer.add(text);
     //
+    stage.add(layer);
+    const loadImages =(sources, callback) => {      
+      var images = {};     
+
+      for(var src in sources) {
+        images[src] = new Image();
+        images[src].onload = () => {
+          callback(images);
+        };   
+        images[src].src = sources[src];
+      }
+    }
+
+    const buildStage = (images) => {
+      rooms.forEach((room, index) => {
+        let nameLayer = index;
+        layer.add(
+          new Konva.Image({
+            image: images[nameLayer],
+            x: room.x,
+            y: room.y
+          })
+          .on('mouseover', () => {
+            writeMessage('mouseover ' + room.name);
+          })
+          .on('mouseout', () => {
+            writeMessage('');
+          })
+          .on('click', () => {
+            this.props.changeLocation(room.id);
+          })
+          .cache()
+          .drawHitFromCache()
+        );  
+      });
+
+      layer.add(text);
+      stage.add(layer);
+    }
+
+    var sources = {};
     
-    // var layerBackground = new Konva.Layer();
-    // var imageObj = new Image();
-    // imageObj.onload = function() {
+    // for(var key in rooms) {
+    //   sources[key] = rooms[key].model;
+    // }
 
-    //   var background = new Konva.Image({
-    //     x: 0,
-    //     y: 0,
-    //     image: imageObj,
-    //     width: 500,
-    //     height: 268
-    //   });
-
-    //   // add the shape to the layer
-    //   layerBackground.add(background);
-
-    //   // add the layer to the stage
-    //   stage.add(layerBackground);
-    // };
-    // imageObj.src = 'http://img.combats.ru/i/images/300x225/dream_central.jpg';
+    // loadImages(sources, buildStage);
   }
+
   drawMapTwo() {
     const location = this.props.location;    
     console.log(location);
