@@ -12,12 +12,16 @@ class Map extends Component {
     }
     componentDidMount() {
         const location = this.props.location;
-        const rooms = location.rooms
+        const rooms = location.rooms;
+        const pathCities = '/assets/cities';
 
         //load background
         const background = new window.Image();
-        background.src = location.background;
-        background.onload = () => this.setState({ background });
+        background.src = pathCities + location.background;
+        background.onload = () => {
+            this.setState({ background });
+            this.imageNode.cache();
+        };
 
         //load rooms
         const images = rooms.map((room, index) => {
@@ -27,14 +31,16 @@ class Map extends Component {
                 this.setState({ images }); 
                 this.group.children[index].cache().drawHitFromCache();     
             }               
-            image.src = room.model;
+            image.src = pathCities + room.model;
             return {image: image, x: room.x, y: room.y, id: room.id}
         })
         
         //load exit
-        const exitImage = new window.Image();
-        exitImage.src = '/assets/exit.png'
-        exitImage.onload = () => this.setState({ exitButton: { image: exitImage, location_id: location.location_id }}); 
+        if(location.location_id) {
+            const exitImage = new window.Image();
+            exitImage.src = '/assets/exit.png'
+            exitImage.onload = () => this.setState({ exitButton: { image: exitImage, location_id: location.location_id }}); 
+        }
     }
 
     handleClick (id) {
@@ -52,15 +58,14 @@ class Map extends Component {
                 drawHitFromCache
                 onClick={() => this.handleClick(image.id)}
             />
-        ));       console.log(this.state);
-        
+        ));        
          
         return (
             <Stage width={this.state.width} height={this.state.height}>
                 <Layer>
-                    <Image image={this.state.background} />
+                    <Image image={this.state.background} ref={node => this.imageNode = node} />
                     <Image image={this.state.exitButton.image} onClick={() => this.handleClick(this.state.exitButton.location_id)} />
-                    <Group ref={node => this.group = node}>{images}</Group>{/* <Image drawHitFromCache image={this.state.image} onClick={this.handleClick} ref={shape => this.imageShape = shape} /> */}
+                    <Group ref={node => this.group = node}>{images}</Group>
                 </Layer>
             </Stage>
         );

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Map from '../components/Map';
 import Chat from '../components/Chat';
-
+import Character from '../components/Сharacter';
+const userId = 1;
 class Game extends Component {
   state = {
     playerInfo: [],
@@ -23,7 +24,7 @@ class Game extends Component {
   }
 
   getPlayerInfo() {
-    axios.get(`http://127.0.0.1:8000/api/users/1`).then(res => {
+    axios.get(`http://127.0.0.1:8000/api/users/${userId}`).then(res => {
         this.setState({ playerInfo: res.data });
         this.getLocation(); 
     })
@@ -49,8 +50,10 @@ class Game extends Component {
     
     return isLoading ? 'Загрузка...' : (
       <div>
-      <Map location={this.state.location} changeLocation={this.changeLocation.bind(this)} />
-      <Chat />
+        <div>{this.state.location.type}</div>
+        <Character character={this.state.playerInfo} />
+        <Map location={this.state.location} changeLocation={this.changeLocation.bind(this)} />
+        <Chat />
       </div>
     );
   }
