@@ -43,14 +43,14 @@ class Game extends Component {
       console.log(res.data);
       this.setState({ playerInfo: res.data });
       this.getLocation(); 
-    })   
+    }) ;  
   }
 
   render() {     
     const { isLoading, location, playerInfo }  = this.state;   
     let window;
 
-    if(location.type == 'shop') window = <Shop location={location.id} />;
+    if(location.type === 'shop') window = <Shop location={location.id} />;
     
     return isLoading ? 'Загрузка...' : (
       <div>
