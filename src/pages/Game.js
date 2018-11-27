@@ -3,6 +3,7 @@ import axios from 'axios';
 import Map from '../components/Map';
 import Chat from '../components/Chat';
 import Character from '../components/Сharacter';
+import Shop from '../components/Shop';
 const userId = 1;
 class Game extends Component {
   state = {
@@ -46,13 +47,16 @@ class Game extends Component {
   }
 
   render() {     
-    const { isLoading }  = this.state;   
+    const { isLoading, location, playerInfo }  = this.state;   
+    let window;
+
+    if(location.type == 'shop') window = <Shop location={location.id} />;
     
     return isLoading ? 'Загрузка...' : (
       <div>
-        <div>{this.state.location.type}</div>
-        <Character character={this.state.playerInfo} />
-        <Map location={this.state.location} changeLocation={this.changeLocation.bind(this)} />
+        <div>{window}</div>
+        <Character character={playerInfo} />
+        <Map location={location} changeLocation={this.changeLocation.bind(this)} />
         <Chat />
       </div>
     );
