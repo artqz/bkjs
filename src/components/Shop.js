@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class Item extends Component {
+
     render() {
         const { item } = this.props;
-        const pathItems = '/assets'
+        const pathItems = '/assets';
         return (
             <div><img src={pathItems + item.icon} /> {item.name} - {item.price}</div>
         );
