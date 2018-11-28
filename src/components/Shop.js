@@ -5,11 +5,10 @@ import Inventory from './Inventory'
 class Item extends Component {
     createNewItem (item, userId) {
         axios.post(`http://127.0.0.1:8000/api/items/`, { item: item, user_id: userId }).then(res => {
-            console.log(res.data); 
+            this.props.buyItem();
         });
     }
-    buyItem (item, playerInfo) {
-        console.log(item); 
+    buyItem (item, playerInfo) { 
         this.createNewItem(item, playerInfo.id);       
     }
     render() {
@@ -24,29 +23,28 @@ class Item extends Component {
 class Shop extends Component {
     state = {
         shopName: null,
-        items: []
+        items: [],
     }
     getShopInfo() {
         axios.get(`http://127.0.0.1:8000/api/shops/location/${this.props.location}`).then(res => {
             this.setState({ items: res.data.items, shopName: res.data.name });
         })
-      }
+    }
     componentDidMount() {
-       this.getShopInfo();
+        this.getShopInfo();;        
     }
     buyItem(id) {
-        console.log(id);
-        
+        console.log('shop event');
+        this.props.buyItem();
     }
     render() {
         const { items, shopName } = this.state;
-        const { playerInfo } = this.props;
         
         return (
             <div>       
                 {shopName}         
-                {items.map(item => <Item buyItem={this.buyItem} key={item.id} item={item} playerInfo={playerInfo} />)}   
-                <Inventory size={playerInfo.inventory_size} />                        
+                {items.map(item => <Item buyItem={this.buyItem.bind(this)} key={item.id} item={item} playerInfo={this.props.playerInfo} />)}   
+                <Inventory items={this.props.playerInfo.items} inventory_size={this.props.playerInfo.inventory_size} />                        
             </div>
         );
     }

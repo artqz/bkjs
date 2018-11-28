@@ -1,19 +1,46 @@
 import React, { Component } from 'react';
+import './Inventory.css';
 
-class Inventory extends Component {
-
+class Item extends Component {
     render() {
-        const { size } = this.props;
+        const { item } = this.props;
         const pathItems = '/assets/items/';
 
-        let items = [];
-        for (let i = 0; i < size; i++) {
-            items[i] = i;            
+        if(item.id) {
+            var slot = (
+                <div className="slotItem"><img src={pathItems + item.icon} alt={item.name} /></div>
+            );
         }
+        else {
+            var slot = (
+                <div className="slotFree"></div>
+            );
+        }
+
         return (
-            <div>{items.map(item => (
-                <div>{item}</div>
-            ))}</div>
+            <div className="inventorySlot">{slot}</div>
+        )
+    }
+}
+
+class Inventory extends Component {
+    render() {
+        const { inventory_size, items } = this.props;
+        
+        //Определяем количество свободных слотов
+        const freeSlotsItems = inventory_size - items.length;
+        
+        //Добавляем пустые слоты в инвентарь
+        for (let i = 0; i < freeSlotsItems; i++) {
+            items.push(0);            
+        }
+        
+        return (
+            <div className="inventory">
+                {items.map((item, index) => (
+                    <Item item={item} key={index} />
+                ))}
+            </div>
         );
     }
 }

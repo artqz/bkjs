@@ -1,0 +1,17 @@
+.inventory {
+    width: 200px;
+}
+.inventorySlot {
+    display: inline-block;
+}
+.slotItem {
+    width: 32px;
+    height: 32px;
+    margin: 1px;
+}
+.slotFree {
+    width: 32px;
+    height: 32px;
+    margin: 1px;
+    background-color: green;
+}

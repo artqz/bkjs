@@ -28,6 +28,8 @@ class Game extends Component {
     axios.get(`http://127.0.0.1:8000/api/users/${userId}`).then(res => {
         this.setState({ playerInfo: res.data });
         this.getLocation(); 
+        console.log('yo!');
+        
     })
   }
 
@@ -43,14 +45,20 @@ class Game extends Component {
       console.log(res.data);
       this.setState({ playerInfo: res.data });
       this.getLocation(); 
-    }) ;  
+    });  
+  }
+
+  buyItem() {
+    console.log('game event');
+    //this.setState({ isLoading: true });
+    this.getPlayerInfo();
   }
 
   render() {     
     const { isLoading, location, playerInfo }  = this.state;   
     let window;
 
-    if(location.type === 'shop') window = <Shop location={location.id} playerInfo={playerInfo} />;
+    if(location.type === 'shop') window = <Shop location={location.id} playerInfo={playerInfo} buyItem={this.buyItem.bind(this)} />;
     
     return isLoading ? 'Загрузка...' : (
       <div>
