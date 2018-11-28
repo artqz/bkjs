@@ -50,7 +50,7 @@ class Game extends Component {
     const { isLoading, location, playerInfo }  = this.state;   
     let window;
 
-    if(location.type === 'shop') window = <Shop location={location.id} />;
+    if(location.type === 'shop') window = <Shop location={location.id} playerInfo={playerInfo} />;
     
     return isLoading ? 'Загрузка...' : (
       <div>
