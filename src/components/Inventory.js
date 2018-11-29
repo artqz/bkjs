@@ -34,12 +34,21 @@ class Inventory extends Component {
         for (let i = 0; i < freeSlotsItems; i++) {
             items.push(0);            
         }
+
+        //Отображаем количество золота
+        const goldItem = items.filter(item => item.itemable_type === 'etc')[0]
+        let goldCount;
+        if (goldItem) {
+            goldCount = goldItem['count'];
+        }
+        else goldCount = 0;
         
         return (
             <div className="inventory">
                 {items.map((item, index) => (
                     <Item item={item} key={index} />
                 ))}
+                <div>{goldCount} Gold</div>
             </div>
         );
     }
