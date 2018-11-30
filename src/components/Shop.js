@@ -39,12 +39,13 @@ class Shop extends Component {
     }
     render() {
         const { items, shopName } = this.state;
+        const { playerInfo } = this.props;
         
         return (
             <div>       
                 {shopName}         
                 {items.map(item => <Item buyItem={this.buyItem.bind(this)} key={item.id} item={item} playerInfo={this.props.playerInfo} />)}   
-                <Inventory items={this.props.playerInfo.items} inventory_size={this.props.playerInfo.inventory_size} />                        
+                <Inventory playerInfo={playerInfo} />                        
             </div>
         );
     }
