@@ -5,33 +5,30 @@ import './Inventory.css';
 class Item extends Component {
     equipItem (item, userId) {
         axios.post(`http://127.0.0.1:8000/api/users/equip_item`, { item: item, user_id:userId }).then(res => {
-            console.log(item.id);
-            console.log(res.data);
+            this.props.equipItem();
         });
     }
     render() {
         const { item, userId } = this.props;
         const pathItems = '/assets/items/';
-        let slot;
-        if(item.id) {
-            slot = (
-                <div className="slotItem" onDoubleClick={() => this.equipItem(item, userId)}><img src={pathItems + item.icon} alt={item.name} /></div>
-            );
-        }
-        else {
-            slot = (
-                <div className="slotFree"></div>
-            );
-        }
 
         return (
-            <div className="inventorySlot">{slot}</div>
+            (item.id)?
+                <div className="inventorySlot" onDoubleClick={() => this.equipItem(item, userId)}>
+                    <div className="itemFrame"></div>
+                    <img src={pathItems + item.icon} alt={item.name} />
+                </div>
+            :
+                <div className="inventorySlot"><img src={pathItems + 'inventory/free_slot.png'} alt="free slot" /></div>
         )
     }
 }
 
 class Inventory extends Component {
-    render() {
+    equipItem() {
+        this.props.changeItem();
+    }
+    render() {        
         const { playerInfo } = this.props;
         
         let itemsList = [];
@@ -55,14 +52,16 @@ class Inventory extends Component {
             goldCount = goldItem['count'];
         }
         else goldCount = 0;
-        console.log(playerInfo);
         
         return (
             <div className="inventory">
-                {itemsList.map((item, index) => (
-                    <Item item={item} key={index} userId={playerInfo.id}  />
-                ))}
-                <div>{goldCount} Gold</div>
+                <div className="inventoryTitle">Inventory</div>
+                <div className="inventoryList">
+                    {itemsList.map((item, index) => (
+                        <Item item={item} key={index} userId={playerInfo.id} equipItem={this.equipItem.bind(this)}  />
+                    ))}
+                </div>                
+                <div className="inventoryGold"><div className="count"><span className="coin"></span>{goldCount}</div></div>
             </div>
         );
     }

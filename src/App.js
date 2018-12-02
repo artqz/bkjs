@@ -1,36 +1,18 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import NavBar from './components/NavBar';
 import GamePage from './pages/Game';
+import LoginPage from './pages/Login';
 
-const Index = () => <h2>Home</h2>;
-const About = () => <h2>About</h2>;
-const Users = () => <h2>Users</h2>;
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about/">About</Link>
-              </li>
-              <li>
-                <Link to="/users/">Users</Link>
-              </li>
-              <li>
-                <Link to="/game/">Game</Link>
-              </li>
-            </ul>
-          </nav>
-
-          <Route path="/" exact component={Index} />
-          <Route path="/about/" component={About} />
-          <Route path="/users/" component={Users} />
+        <div>         
+          <NavBar />
+          <Route path="/login/" component={LoginPage} />
           <Route path="/game/" component={GamePage} />
         </div>
       </Router>
@@ -38,4 +20,41 @@ class App extends Component {
   }
 }
 
-export default App;
+const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true;
+    setTimeout(cb, 100); // fake async
+  },
+  signout(cb) {
+    this.isAuthenticated = false;
+    setTimeout(cb, 100);
+  }
+};
+
+function PrivateRoute({ component: Component, ...rest }) {  
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        fakeAuth.isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: props.location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
+export default connect(
+  state => ({
+    testStore: state.player
+  }),
+  dispatch => ({})
+)(App);

@@ -4,6 +4,8 @@ import Map from '../components/Map';
 import Chat from '../components/Chat';
 import Character from '../components/Сharacter';
 import Shop from '../components/Shop';
+import Inventory from '../components/Inventory';
+
 const userId = 1;
 class Game extends Component {
   state = {
@@ -54,11 +56,20 @@ class Game extends Component {
     this.getPlayerInfo();
   }
 
+  changeItem() {
+    this.getPlayerInfo();
+  }
+
   render() {     
     const { isLoading, location, playerInfo }  = this.state;   
     let window;
 
-    if(location.type === 'shop') window = <Shop location={location.id} playerInfo={playerInfo} buyItem={this.buyItem.bind(this)} />;
+    if(location.type === 'shop') window = (
+      <div>
+        <Shop location={location.id} playerInfo={playerInfo} buyItem={this.buyItem.bind(this)} />
+        <Inventory playerInfo={playerInfo} changeItem={this.changeItem.bind(this)} />
+      </div>
+    );
     
     return isLoading ? 'Загрузка...' : (
       <div>
