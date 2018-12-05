@@ -1,36 +1,26 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { AuthContext } from '../context/Auth'
 
-class NavBar extends Component {
-    render() {       
-        const { isAuth } = 1//this.props.auth; 
+export const NavBar = () => {     
+    const value = useContext(AuthContext);
+    console.log(value.isAuth);
+    
+    const isAuth = value.isAuth; 
 
-        const userLinks = (
-            <Link to="/game" >Game</Link>
-        );
+    const userLinks = (
+        <Link to="/game" >Game</Link>
+    );
 
-        const guestLinks = (
-            <Link to="/login">Login</Link>
-        );
+    const guestLinks = (
+        <Link to="/login">Login</Link>
+    );
 
-        return (
-            <nav> 
-                {(isAuth) ? userLinks : guestLinks}               
-            </nav>            
-        );
-    }
+    return (
+        <nav> 
+            {(isAuth ) ? userLinks : guestLinks}               
+        </nav>            
+    );
 }
 
-NavBar.propTypes = {
-    auth: PropTypes.object.isRequired
-}
-
-const mapeStateToProps = (state) => {
-    return {
-        auth: state.auth
-    };
-}
-
-export default connect(mapeStateToProps)(NavBar);
+export default NavBar;

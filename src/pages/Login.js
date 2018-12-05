@@ -1,46 +1,45 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import {login} from '../actions/login';
+import React, { useState, useReducer } from 'react';
+import axios from 'axios';
+import { reducer } from '../context/Auth';
 
-class Login extends Component {
-    state = {
-        email: '',
+const Login = (props) => {
+    const [form, setValues] = useState({
+        username: '',
         password: ''
-    }
-    onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-    }
-    onSubmit() {
+    });
+    const [state, dispatch] = useReducer(reducer, {count: 1});
+    const updateField = e => {
+        setValues({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = () => {
+        dispatch({type: 'AUTH_SUCCESS'});
         const data = {
             grant_type: 'password',
             client_id:'2',
             client_secret: 'YuMGy00bQjOewsIS2A9XNnvkkReoLNTpHWipAn3a',
-            username: 'djoctuk@yandex.ru',
-            password: '110789'
-        }        
-        
-        this.props.login(data)
-        .then((res) => console.log(res)//this.context.router.push('/')
+            username: form.username,
+            password: form.password
+        }
+        axios.post('http://127.0.0.1:8000/oauth/token', data)
+        .then((res) => {
+            console.log(res)
+            localStorage.setItem('token', res.data.access_token);}//this.context.router.push('/')
         )
-        .catch(err => console.log(err)); 
-        
+        .catch(err => console.log(err));
     }
-    render() {
-        const { login, password } = this.state;
-        return (
-            <div>
-                <input type="text" name="email" value={login} onChange={this.onChange.bind(this)} />
-                <input type="password" name="password" value={password} onChange={this.onChange.bind(this)} />
-                <button onClick={this.onSubmit.bind(this)}>Auth</button>
-            </div>
-        );
-    }
+
+    return (
+        <div>
+            {form.username}
+            <input name="username" value={form.username} onChange={updateField}/>
+            {form.password}
+            <input name="password" value={form.password} onChange={updateField}/>
+            <button onClick={handleSubmit}>test</button>
+        </div>
+    )
 }
-Login.propTypes = {
-    login: PropTypes.func.isRequired
-}
-Login.contextType = {
-    router: PropTypes.object.isRequired
-}
-export default connect(null, { login })(Login);
+export default Login;

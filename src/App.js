@@ -1,23 +1,20 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 import NavBar from './components/NavBar';
 import GamePage from './pages/Game';
 import LoginPage from './pages/Login';
+import { AuthContext, authState } from './context/Auth';
 
-
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div>         
-          <NavBar />
-          <Route path="/login/" component={LoginPage} />
-          <Route path="/game/" component={GamePage} />
-        </div>
-      </Router>
-    );
-  }
+const App = () => {
+  return (
+    <Router>
+      <AuthContext.Provider value={authState}>         
+        <NavBar />
+        <Route path="/login/" component={LoginPage} />
+        <Route path="/game/" component={GamePage} />
+      </AuthContext.Provider>
+    </Router>
+  );
 }
 
 const fakeAuth = {
@@ -52,9 +49,4 @@ function PrivateRoute({ component: Component, ...rest }) {
   );
 }
 
-export default connect(
-  state => ({
-    testStore: state.player
-  }),
-  dispatch => ({})
-)(App);
+export default App;
