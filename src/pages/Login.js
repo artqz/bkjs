@@ -1,8 +1,11 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useContext } from 'react';
 import history from '../history';
 import { login } from '../middleware/auth';
-
+import { AuthContext } from  '../AuthContext';
 const Login = (props) => {
+    const value = useContext(AuthContext);
+    console.log(value);
+    
     const [form, setValues] = useState({
         username: '',
         password: ''
@@ -16,19 +19,6 @@ const Login = (props) => {
     
     const handleSubmit = (props) => {
         login(form.username, form.password).then(res => history.push('/'));
-        // const data = {
-        //     grant_type: 'password',
-        //     client_id:'2',
-        //     client_secret: 'YuMGy00bQjOewsIS2A9XNnvkkReoLNTpHWipAn3a',
-        //     username: form.username,
-        //     password: form.password
-        // }
-        // axios.post('http://127.0.0.1:8000/oauth/token', data)
-        // .then((res) => {
-        //     console.log(res)
-        //     localStorage.setItem('token', res.data.access_token);}//this.context.router.push('/')
-        // )
-        // .catch(err => console.log(err));
     }
 
     return (
