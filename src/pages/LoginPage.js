@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import history from '../history';
-import { login } from '../middleware/auth';
 import { AuthContext } from  '../AuthContext';
-const Login = (props) => {
-    const value = useContext(AuthContext);
-    console.log(value);
+import { login } from '../actions/AuthActions';
+
+const LoginPage = () => {
+    const { setAuth } = useContext(AuthContext);
     
     const [form, setValues] = useState({
         username: '',
@@ -17,8 +17,11 @@ const Login = (props) => {
         });
     };
     
-    const handleSubmit = (props) => {
-        login(form.username, form.password).then(res => history.push('/'));
+    const handleSubmit = () => {
+        login(form.username, form.password).then(res => {
+            setAuth({ isAuth: true });
+            history.push('/');
+        });
     }
 
     return (
@@ -31,4 +34,4 @@ const Login = (props) => {
         </div>
     )
 }
-export default Login;
+export default LoginPage;

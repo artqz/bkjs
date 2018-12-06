@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Router, Route, Redirect } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
+
 import history from './history';
 import { AuthContext } from  './AuthContext';
-import LoginPage from './pages/Login'; 
+import NavBar from './components/layouts/NavBAr';
+import LoginPage from './pages/LoginPage'; 
+
 const App = () => {    
     const [auth, setAuth] = useState({isAuth: false});
     useEffect(() => {
@@ -12,8 +15,9 @@ const App = () => {
     }, []);    
     return (
         <Router history={history}>  
-            <AuthContext.Provider value={auth}>
-                <LoginPage></LoginPage>
+            <AuthContext.Provider value={{auth, setAuth}}>
+                <NavBar />
+                <Route path="/login" component={LoginPage} />
             </AuthContext.Provider>     
         </Router>
     );
