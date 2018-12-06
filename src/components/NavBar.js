@@ -1,13 +1,18 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/Auth'
+import { AuthContext } from '../context/Auth';
 
 export const NavBar = () => {     
-    const value = useContext(AuthContext);
-    console.log(value.isAuth);
+    const {auth} = useContext(AuthContext);
+    // //const {setAuth, auth} = value;
+    // console.log(auth);
+    // const updateAuth = () => {
+    //     setAuth({
+    //         isAuth: true
+    //     });
+    // };
+    const isAuth = auth.isAuth; 
     
-    const isAuth = value.isAuth; 
-
     const userLinks = (
         <Link to="/game" >Game</Link>
     );
@@ -16,7 +21,7 @@ export const NavBar = () => {
         <Link to="/login">Login</Link>
     );
 
-    return (
+    return (        
         <nav> 
             {(isAuth ) ? userLinks : guestLinks}               
         </nav>            

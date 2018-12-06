@@ -1,35 +1,34 @@
 import React, { useState, useReducer } from 'react';
-import axios from 'axios';
-import { reducer } from '../context/Auth';
+import history from '../history';
+import { login } from '../middleware/auth';
 
 const Login = (props) => {
     const [form, setValues] = useState({
         username: '',
         password: ''
     });
-    const [state, dispatch] = useReducer(reducer, {count: 1});
     const updateField = e => {
         setValues({
             ...form,
             [e.target.name]: e.target.value
         });
     };
-
-    const handleSubmit = () => {
-        dispatch({type: 'AUTH_SUCCESS'});
-        const data = {
-            grant_type: 'password',
-            client_id:'2',
-            client_secret: 'YuMGy00bQjOewsIS2A9XNnvkkReoLNTpHWipAn3a',
-            username: form.username,
-            password: form.password
-        }
-        axios.post('http://127.0.0.1:8000/oauth/token', data)
-        .then((res) => {
-            console.log(res)
-            localStorage.setItem('token', res.data.access_token);}//this.context.router.push('/')
-        )
-        .catch(err => console.log(err));
+    
+    const handleSubmit = (props) => {
+        login(form.username, form.password).then(res => history.push('/'));
+        // const data = {
+        //     grant_type: 'password',
+        //     client_id:'2',
+        //     client_secret: 'YuMGy00bQjOewsIS2A9XNnvkkReoLNTpHWipAn3a',
+        //     username: form.username,
+        //     password: form.password
+        // }
+        // axios.post('http://127.0.0.1:8000/oauth/token', data)
+        // .then((res) => {
+        //     console.log(res)
+        //     localStorage.setItem('token', res.data.access_token);}//this.context.router.push('/')
+        // )
+        // .catch(err => console.log(err));
     }
 
     return (
