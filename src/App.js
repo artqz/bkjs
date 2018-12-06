@@ -9,14 +9,8 @@ import { AuthContext, authState } from './context/Auth';
 
 const App = () => {  
   const {setAuth, auth} = authState();
-  useEffect(() => {
-    return updateStateAuth();
-    
-    //if(loggedIn()) setAuth({isAuth: true});
-  });
+  useEffect(() => setAuth({isAuth: true}), []);
   console.log(auth);
-  
-  const updateStateAuth = () => setAuth({isAuth: true});
   return (
     <Router history={history}>
       <AuthContext.Provider value={authState()}>         

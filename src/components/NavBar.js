@@ -11,6 +11,8 @@ export const NavBar = () => {
     //         isAuth: true
     //     });
     // };
+    console.log(auth);
+    
     const isAuth = auth.isAuth; 
     
     const userLinks = (
