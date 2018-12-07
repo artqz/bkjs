@@ -1,17 +1,22 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import { logout } from '../../actions/AuthActions';
 
 const NavBar = () => {
 	const { auth } = useContext(AuthContext);
 	const isAuth = auth.isAuth;
+	const handleClick = () => {		
+		logout();
+		return <Redirect to="/" />
+	}
 	const userLinks = (
 		<ul>
 			<li>
 				<Link to="/profile">Profile</Link>
 			</li>
 			<li>
-				<Link to="/logout">Logout</Link>
+				<a href="/" onClick={handleClick}>Logout</a>
 			</li>
 		</ul>
 	);

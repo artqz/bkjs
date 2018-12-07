@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { PlayerContext } from '../context/PlayerContext';
+
+import Chat from '../components/chat/Chat';
 
 const GamePage = () => {
-	return <div>Game PAge</div>;
+	const { player } = useContext(PlayerContext);
+
+	return (
+		<div>
+			<button>{player.name}</button>
+			<Chat />
+		</div>
+	);
 };
 export default GamePage;

@@ -5,7 +5,9 @@ import history from './history';
 import { AuthContext } from './context/AuthContext';
 import { PlayerContext } from './context/PlayerContext';
 import { checkAuth } from './actions/AuthActions';
-import NavBar from './components/layouts/NavBAr';
+import { getPlayerInfo } from './actions/PlayerActions';
+import NavBar from './components/layouts/NavBar';
+import './App.css';
 
 import LoginPage from './pages/LoginPage';
 import GamePage from './pages/GamePage';
@@ -16,6 +18,9 @@ const App = () => {
 
 	useEffect(() => {
 		setAuth({ isAuth: checkAuth() });
+		if (checkAuth()) {
+			getPlayerInfo().then(res => setPlayer(res)).catch(err => console.log(err));
+		}
 	}, []);
 
 	return (
