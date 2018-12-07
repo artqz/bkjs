@@ -1,3 +1,40 @@
 .chat {
-    color: white;
+    color: #bd761d;
+    border-top: 1px solid #ffb00073;
+    background-color: #3e2d2f;
+    position: fixed;
+    width: 100%;
+    left: 0; 
+    bottom: 0;
+ 
+}
+.users {
+    overflow-y: scroll;
+    width: 15%;
+    height: 200px;
+    display: inline-block;
+}
+.messages {
+    height: 200px;
+    width: 85%;
+    display: inline-block;
+}
+
+.message .date {
+    font-size: 11px;
+    text-align: center;
+    margin-left: 4px;
+    margin-right: 7px;
+    background-color: #0000004f;
+    border-radius: 3px;
+    padding: 1px 5px;
+}
+.message .username {
+    color: #e4bc73;
+    font-size: 13px;
+    margin-right: 5px;
+}
+.message .text {
+    color: #e4bc73;
+    font-size: 13px
 }

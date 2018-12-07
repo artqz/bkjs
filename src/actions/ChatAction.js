@@ -1,5 +1,20 @@
 import axios from 'axios';
 
+export const getUsers = () => {
+    const token = getToken();
+    const config = {
+        headers: {
+            Authorization: 'Bearer ' + token,
+            Accept: 'application/json'
+        }
+    };
+    return axios
+		.get(`${process.env.REACT_APP_API_URL}/api/chat/users_online`, config)
+		.then(res => {  
+            return res.data;
+		});
+}
+
 export const getMessages = () => {
     const token = getToken();
     const config = {

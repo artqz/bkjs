@@ -1,8 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { sendMessage, getMessages } from '../../actions/ChatAction';
+import ScrollToBottom from 'react-scroll-to-bottom';
+import { sendMessage, getMessages, getUsers } from '../../actions/ChatAction';
 import './Chat.css';
+const Message = (props) => {
+    const { message } = props;
 
+    return (
+        <div className="message">
+            <span className="date">{message.date}</span>
+            <span className="username">{message.user.name}:</span>
+            <span className="text">{message.text}</span>
+        </div>
+    );
+}
 const Chat = () => {
+    const [users, setUser] = useState([]);
     const [messages, setMessage] = useState([]);
     const [form, setValue] = useState({text: ''});
     const intervalRef = useRef()
@@ -11,7 +23,7 @@ const Chat = () => {
 		setValue({text: e.target.value});
     };
     const handleSubmit = () => {
-        sendMessage(form.text).then(res => setMessage);
+        sendMessage(form.text);
         setValue({text: ''});
     }
 
@@ -19,6 +31,9 @@ const Chat = () => {
         const id = setInterval(() => {
             getMessages().then(res => {
                 setMessage(res)            
+            });
+            getUsers().then(res => {
+                setUser(res)            
             });
             
         }, 1000);
@@ -29,7 +44,13 @@ const Chat = () => {
 	}, []);
     return (
         <div className="chat">
-            {(messages)?messages.map((message, index) => <div key={index}>{message.user.name}: {message.text}</div>):null}
+            <ScrollToBottom className="messages">
+                {(messages)?messages.map((message, index) => <Message key={index} message={message} />):null}
+            </ScrollToBottom>
+            <div className="users">
+                Онлайн: {users.length}
+                {(users)?users.map((user, index) => <div key={index}>{user.name}</div>):null}
+            </div>
             <div><input name="text" value={form.text} onChange={updateForm} /><button onClick={handleSubmit}>Отправить</button></div>
         </div>
     );
