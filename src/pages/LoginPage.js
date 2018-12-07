@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import history from '../history';
-import { AuthContext } from  '../AuthContext';
+import { AuthContext } from  '../context/AuthContext';
 import { login } from '../actions/AuthActions';
 
 const LoginPage = () => {
@@ -20,7 +20,7 @@ const LoginPage = () => {
     const handleSubmit = () => {
         login(form.username, form.password).then(res => {
             setAuth({ isAuth: true });
-            history.push('/');
+            history.push('/game');
         });
     }
 
@@ -30,7 +30,7 @@ const LoginPage = () => {
             <input name="username" value={form.username} onChange={updateField}/>
             {form.password}
             <input name="password" value={form.password} onChange={updateField}/>
-            <button onClick={handleSubmit}>test</button>
+            <button onClick={handleSubmit}>Login</button>
         </div>
     )
 }
