@@ -6,58 +6,54 @@ import NavBar from './components/NavBar';
 import GamePage from './pages/Game';
 import LoginPage from './pages/Login';
 import { AuthContext, authState } from './context/Auth';
-const uploadAuthState = (setAuth) => {
-  
-}
-const App = () => {  
-  const {setAuth, auth} = authState();
-  useEffect(() => {
-    setAuth({isAuth: true});
-    
-    
-  },[]);
-  console.log(auth);
-  return (
-    <Router history={history}>
-      <AuthContext.Provider value={authState()}>         
-        <NavBar />
-        <Route path="/login/" component={LoginPage} />
-        <Route path="/game/" component={GamePage} />
-      </AuthContext.Provider>
-    </Router>
-  );
-}
-
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
-  },
-  signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100);
-  }
+const uploadAuthState = setAuth => {};
+const App = () => {
+	const { setAuth, auth } = authState();
+	useEffect(() => {
+		setAuth({ isAuth: true });
+	}, []);
+	console.log(auth);
+	return (
+		<Router history={history}>
+			<AuthContext.Provider value={authState()}>
+				<NavBar />
+				<Route path="/login/" component={LoginPage} />
+				<Route path="/game/" component={GamePage} />
+			</AuthContext.Provider>
+		</Router>
+	);
 };
 
-function PrivateRoute({ component: Component, ...rest }) {  
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        fakeAuth.isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />
-        )
-      }
-    />
-  );
+const fakeAuth = {
+	isAuthenticated: false,
+	authenticate(cb) {
+		this.isAuthenticated = true;
+		setTimeout(cb, 100); // fake async
+	},
+	signout(cb) {
+		this.isAuthenticated = false;
+		setTimeout(cb, 100);
+	},
+};
+
+function PrivateRoute({ component: Component, ...rest }) {
+	return (
+		<Route
+			{...rest}
+			render={props =>
+				fakeAuth.isAuthenticated ? (
+					<Component {...props} />
+				) : (
+					<Redirect
+						to={{
+							pathname: '/login',
+							state: { from: props.location },
+						}}
+					/>
+				)
+			}
+		/>
+	);
 }
 
 export default App;
