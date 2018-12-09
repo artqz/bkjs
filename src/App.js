@@ -27,7 +27,7 @@ const App = () => {
 		<Router history={history}>
 			<AuthContext.Provider value={{ auth, setAuth }}>
 				<PlayerContext.Provider value={{ player, setPlayer }}>
-					<NavBar />
+					{/* <NavBar /> */}
 					<Route path="/login" component={LoginPage} />
 					<PrivateRoute path="/game" component={GamePage} />
 				</PlayerContext.Provider>

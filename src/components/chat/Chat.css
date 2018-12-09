@@ -8,6 +8,26 @@
     bottom: 0;
  
 }
+.chat .inputBox {
+    width: 70%;
+    padding: 4px;
+    display: inline-block;
+} 
+
+.chat .input {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 13px;
+    line-height: 1;
+    color: #bd761d;
+    background-color: #0000002e;
+    border: 1px solid #00000080;
+}
+.chat .buttonBox {
+    width: 30%;
+    display: inline-block;
+} 
 .users {
     overflow-y: scroll;
     width: 15%;
@@ -36,5 +56,37 @@
 }
 .message .text {
     color: #e4bc73;
-    font-size: 13px
+    font-size: 13px;
+    line-height: 20px;
+}
+.message .text img {
+    vertical-align: middle;
+    height: 20px;
+}
+.users .online {
+    text-align: center;
+}
+.user {
+    position: relative;
+}
+.user .circle {
+    width: 7px;
+    height: 7px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #0000005e;
+    position: absolute;
+    top: 9px;
+    left: 8px;
+
+}
+.user .username {
+    color: #e4bc73;
+    font-size: 13px;
+    margin-left: 20px;
+    margin-right: 5px;
+}
+.user .level {
+    color: #e4bc73;
+    font-size: 13px;
 }

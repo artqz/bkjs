@@ -1,0 +1,50 @@
+.topBar {
+    color: #bd761d;
+    border-bottom: 1px solid #ffb00073;
+    background-color: #3e2d2f;
+}
+.player .hp {
+    position: relative;
+    background-color: #0000005e;
+    width: 150px;
+    height: 15px;
+    display: flex;
+    color: white;    
+    align-items: center;
+    z-index: 1;
+}
+.player .hp > .current {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(to top, #090, #0a0, #0c0, #0a0);
+    display: block;
+    height: 15px;
+    z-index: -1;
+}
+.player .hp:after {
+    content: attr(data-progress) '';
+    font-size: 11px;
+    font-weight: bold;
+    display: block;
+    margin: auto;
+    text-shadow: 
+		-0   -1px 0   #000000,
+		 0   -1px 0   #000000,
+		-0    1px 0   #000000,
+		 0    1px 0   #000000,
+		-1px -0   0   #000000,
+		 1px -0   0   #000000,
+		-1px  0   0   #000000,
+		 1px  0   0   #000000,
+		-1px -1px 0   #000000,
+		 1px -1px 0   #000000,
+		-1px  1px 0   #000000,
+		 1px  1px 0   #000000,
+		-1px -1px 0   #000000,
+		 1px -1px 0   #000000,
+		-1px  1px 0   #000000,
+		 1px  1px 0   #000000;
+  }

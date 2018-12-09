@@ -10,7 +10,7 @@ import './LoginPage.css';
 const LoginPage = () => {
 	const { setAuth, auth } = useContext(AuthContext);
 	const isAuth = auth.isAuth;
-	const { setPlayer, player } = useContext(PlayerContext);
+	const { setPlayer } = useContext(PlayerContext);
 
 	const [form, setValues] = useState({
 		username: '',
