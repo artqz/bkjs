@@ -10,6 +10,7 @@ import NavBar from './components/layouts/NavBar';
 import './App.css';
 
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import GamePage from './pages/GamePage';
 
 const App = () => {
@@ -19,7 +20,9 @@ const App = () => {
 	useEffect(() => {
 		setAuth({ isAuth: checkAuth() });
 		if (checkAuth()) {
-			getPlayerInfo().then(res => setPlayer(res)).catch(err => console.log(err));
+			getPlayerInfo()
+				.then(res => setPlayer(res))
+				.catch(err => console.log(err));
 		}
 	}, []);
 
@@ -28,7 +31,8 @@ const App = () => {
 			<AuthContext.Provider value={{ auth, setAuth }}>
 				<PlayerContext.Provider value={{ player, setPlayer }}>
 					{/* <NavBar /> */}
-					<Route path="/login" component={LoginPage} />
+					<Route exact path="/" component={LoginPage} />
+					<Route path="/register" component={RegisterPage} />
 					<PrivateRoute path="/game" component={GamePage} />
 				</PlayerContext.Provider>
 			</AuthContext.Provider>
@@ -48,7 +52,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 					<Component {...props} />
 				) : (
 					<Redirect
-						to={{ pathname: '/login', state: { from: props.location } }}
+						to={{ pathname: '/', state: { from: props.location } }}
 					/>
 				)
 			}

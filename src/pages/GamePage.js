@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
-import { PlayerContext } from '../context/PlayerContext';
+import React from 'react';
 
 import Chat from '../components/chat/Chat';
 import TopBar from '../components/bars/TopBar';
+import Character from '../components/character/Character';
+import Map from '../components/map/Map';
 
 const GamePage = () => {
-	const { player } = useContext(PlayerContext);
-
 	return (
 		<div>
 			<TopBar />
-			<button>{player.name}</button>
+			<Character />
+			<Map />
 			<Chat />
 		</div>
 	);

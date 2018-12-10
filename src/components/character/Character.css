@@ -1,0 +1,73 @@
+.character {
+    border: 1px solid #000;
+    background-color: #3e2d2f;
+    width: 250px;
+    height: 282px;
+    text-align: center;
+    position: relative;
+}
+
+.character .avatar {
+    margin-top: 40px;
+}
+
+.character .item {
+    position: absolute;
+}
+.itemEarringOne {
+    top: 30px;
+    left: 2px;
+}
+.itemEarringTwo {
+    top: 66px;
+    left: 2px;
+}
+.itemNecklace {
+    top: 102px;
+    left: 2px;
+}
+.itemRingOne {
+    top: 138px;
+    left: 2px;
+}
+.itemRingTwo {
+    top: 174px;
+    left: 2px;
+}
+.itemBag {
+    top: 210px;
+    left: 2px;
+}
+.itemSubWeapon {
+    top: 246px;
+    left: 2px;
+}
+
+.itemHelmet {
+    top: 30px;
+    right: 2px;
+}
+.itemArmor {
+    top: 66px;
+    right: 2px;
+}
+.itemGloves {
+    top: 102px;
+    right: 2px;
+}
+.itemBelt {
+    top: 138px;
+    right: 2px;
+}
+.itemPants {
+    top: 174px;
+    right: 2px;
+}
+.itemShoes {
+    top: 210px;
+    right: 2px;
+}
+.itemWeapon {
+    top: 246px;
+    right: 2px;
+}

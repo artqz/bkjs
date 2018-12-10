@@ -2,6 +2,7 @@
     color: #bd761d;
     border-bottom: 1px solid #ffb00073;
     background-color: #3e2d2f;
+    padding: 5px;
 }
 .player .hp {
     position: relative;
@@ -19,7 +20,8 @@
     left: 0;
     height: 100%;
     width: 0;
-    background: linear-gradient(to top, #090, #0a0, #0c0, #0a0);
+    transition: 1s;
+    /* background: linear-gradient(to top, #090, #0a0, #0c0, #0a0); */
     display: block;
     height: 15px;
     z-index: -1;

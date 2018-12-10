@@ -6,17 +6,19 @@ import { logout } from '../../actions/AuthActions';
 const NavBar = () => {
 	const { auth } = useContext(AuthContext);
 	const isAuth = auth.isAuth;
-	const handleClick = () => {		
+	const handleClick = () => {
 		logout();
-		return <Redirect to="/" />
-	}
+		return <Redirect to="/" />;
+	};
 	const userLinks = (
 		<ul>
 			<li>
 				<Link to="/profile">Profile</Link>
 			</li>
 			<li>
-				<a href="/" onClick={handleClick}>Logout</a>
+				<a href="/" onClick={handleClick}>
+					Logout
+				</a>
 			</li>
 		</ul>
 	);
