@@ -6,7 +6,7 @@ import { AuthContext } from './context/AuthContext';
 import { PlayerContext } from './context/PlayerContext';
 import { checkAuth } from './actions/AuthActions';
 import { getPlayerInfo } from './actions/PlayerActions';
-import NavBar from './components/layouts/NavBar';
+//import NavBar from './components/layouts/NavBar';
 import './App.css';
 
 import LoginPage from './pages/LoginPage';
