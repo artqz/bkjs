@@ -40,7 +40,7 @@ export const checkAuth = () => {
 	}
 	return false;
 };
-const getToken = () => {
+export const getToken = () => {
 	return localStorage.getItem('token');
 };
 

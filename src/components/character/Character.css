@@ -5,6 +5,7 @@
     height: 282px;
     text-align: center;
     position: relative;
+    display: inline-block;
 }
 
 .character .avatar {

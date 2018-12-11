@@ -11,13 +11,13 @@ const TopBar = () => {
 	const intervalRef = useRef();
 	const lineCurrentHp = (player.hp_current / player.hp_max) * 100;
 	let lineHpColor;
-	if (lineCurrentHp >= 19) {
+	if (lineCurrentHp <= 19) {
+		lineHpColor = 'red';
+	}
+	else if (lineCurrentHp <= 45) {
 		lineHpColor = 'yellow';
 	}
-	else if (lineCurrentHp >= 45) {
-		lineHpColor = 'green';
-	}
-	else lineHpColor = 'red';	
+	else lineHpColor = 'green';	
 	
 	useEffect(() => {
 		const id = setInterval(() => {
@@ -29,7 +29,7 @@ const TopBar = () => {
 		return () => {
 			clearInterval(intervalRef.current);
 		};
-	}, []);
+	}, [player.hp_current]);
 
 	const handleLogout = () => {
 		logout();
