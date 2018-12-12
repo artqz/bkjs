@@ -17,20 +17,17 @@ const TopBar = () => {
 		lineHpColor = 'yellow';
 	} else lineHpColor = 'green';
 
-	useEffect(
-		() => {
-			const id = setInterval(() => {
-				getPlayerInfo().then(res => {
-					setPlayer(res);
-				});
-			}, 3000);
-			intervalRef.current = id;
-			return () => {
-				clearInterval(intervalRef.current);
-			};
-		},
-		[player.hp_current]
-	);
+	useEffect(() => {
+		const id = setInterval(() => {
+			getPlayerInfo().then(res => {
+				setPlayer({ ...player, hp_current: res.hp_current });
+			});
+		}, 3000);
+		intervalRef.current = id;
+		return () => {
+			clearInterval(intervalRef.current);
+		};
+	});
 
 	const handleLogout = () => {
 		logout();

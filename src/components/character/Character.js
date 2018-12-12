@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { PlayerContext } from '../../context/PlayerContext';
 import './Character.css';
 
 const Character = props => {
-	const { player } = props;
+	const { player } = useContext(PlayerContext);
 
 	const pathAvatars = '/assets/avatars/';
 	const pathItems = '/assets/items/';

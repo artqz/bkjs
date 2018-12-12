@@ -15,7 +15,7 @@ import GamePage from './pages/GamePage';
 
 const App = () => {
 	const [auth, setAuth] = useState({ isAuth: false });
-	const [player, setPlayer] = useState({});
+	const [player, setPlayer] = useState([]);
 
 	useEffect(() => {
 		setAuth({ isAuth: checkAuth() });

@@ -17,18 +17,22 @@ export const getLocations = locationId => {
 };
 
 export const changeLocation = (playerId, locationId) => {
-    const token = getToken();
+	const token = getToken();
 	const config = {
 		headers: {
 			Authorization: 'Bearer ' + token,
 			Accept: 'application/json',
 		},
 	};
-    return axios
-        .put(`http://127.0.0.1:8000/api/users/${playerId}?update=location`, {
-            location_id: locationId,
-        }, config)
-        .then(res => {
-            return res.data;
-        }).catch(err => err);
-}
+	return axios
+		.put(
+			`http://127.0.0.1:8000/api/users/${playerId}?update=location`,
+			{
+				location_id: locationId,
+			},
+			config
+		)
+		.then(res => {
+			return res.data;
+		});
+};

@@ -8,13 +8,11 @@ import Character from '../components/character/Character';
 import Map from '../components/map/Map';
 
 const GamePage = () => {
-	const { player } = useContext(PlayerContext);
-
 	return (
 		<div>
-			<TopBar player={player} />
-			<Character player={player} />
-			<Map locationId={player.location_id} />
+			<TopBar />
+			<Character />
+			<Map />
 			<Chat />
 		</div>
 	);
