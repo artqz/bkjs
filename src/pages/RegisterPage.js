@@ -6,37 +6,37 @@ import { register } from '../actions/AuthActions';
 import './RegisterPage.css';
 
 const RegisterPage = () => {
-    const { setAuth, auth } = useContext(AuthContext);
-    const isAuth = auth.isAuth;
-    
-    const [form, setValues] = useState({
-        username: '',
-        email: '',
-		password: '',
-    });
+	const { setAuth, auth } = useContext(AuthContext);
+	const isAuth = auth.isAuth;
 
-    const updateField = e => {
+	const [form, setValues] = useState({
+		username: '',
+		email: '',
+		password: '',
+	});
+
+	const updateField = e => {
 		setValues({
 			...form,
 			[e.target.name]: e.target.value,
 		});
-    };
-    
-    const handleSubmit = () => {
-        console.log(form);
-        register(form.email, form.username, form.password).then(res => {
+	};
+
+	const handleSubmit = () => {
+		console.log(form);
+		register(form.email, form.username, form.password).then(res => {
 			history.push('/');
 		});
-    }
+	};
 
-    if (isAuth) {
+	if (isAuth) {
 		return <Redirect to="/game" />;
 	}
-    
-    return (
-        <div className="registerBackground">
+
+	return (
+		<div className="registerBackground">
 			<div className="registerForm">
-                <input
+				<input
 					name="email"
 					className="input"
 					value={form.email}
@@ -61,7 +61,7 @@ const RegisterPage = () => {
 				<Link to="/">Login</Link>
 			</div>
 		</div>
-    );
-}
+	);
+};
 
 export default RegisterPage;

@@ -63,10 +63,11 @@ const Message = props => {
 };
 
 const Chat = () => {
+	const [settings, setSetting] = useState({ isLoading: true });
 	const [users, setUser] = useState([]);
 	const [messages, setMessage] = useState([]);
 	const [form, setValue] = useState({ text: '' });
-    const intervalRef = useRef();
+	const intervalRef = useRef();
 
 	const updateForm = e => {
 		setValue({ text: e.target.value });
@@ -81,6 +82,7 @@ const Chat = () => {
 		const id = setInterval(() => {
 			getMessages().then(res => {
 				setMessage(res);
+				setSetting({ isLoading: false });
 			});
 			getUsers().then(res => {
 				setUser(res);
@@ -94,33 +96,39 @@ const Chat = () => {
 
 	return (
 		<div className="chat">
-			<ScrollToBottom className="messages">
-				{messages
-					? messages.map((message, index) => (
-							<Message key={index} message={message} />
-					  ))
-					: null}
-			</ScrollToBottom>
-			<div className="users">
-				<div className="online">Онлайн: {users.length}</div>
-				{users
-					? users.map((user, index) => <User key={index} user={user} />)
-					: null}
-			</div>
-			<div>
-				<div className="inputBox">
-					<form onSubmit={handleSubmit}>
-						<input
-							name="text"
-							className="input"
-							autoComplete="off"
-							value={form.text}
-							onChange={updateForm}
-						/>
-					</form>
-				</div>
-				<div className="buttonBox" />
-			</div>
+			{!settings.isLoading ? (
+				<React.Fragment>
+					<ScrollToBottom className="messages">
+						{messages
+							? messages.map((message, index) => (
+									<Message key={index} message={message} />
+							  ))
+							: null}
+					</ScrollToBottom>
+					<div className="users">
+						<div className="online">Онлайн: {users.length}</div>
+						{users
+							? users.map((user, index) => <User key={index} user={user} />)
+							: null}
+					</div>
+					<div>
+						<div className="inputBox">
+							<form onSubmit={handleSubmit}>
+								<input
+									name="text"
+									className="input"
+									autoComplete="off"
+									value={form.text}
+									onChange={updateForm}
+								/>
+							</form>
+						</div>
+						<div className="buttonBox" />
+					</div>
+				</React.Fragment>
+			) : (
+				<div className="loading">Loading...</div>
+			)}
 		</div>
 	);
 };

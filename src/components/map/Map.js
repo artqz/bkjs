@@ -1,47 +1,62 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { getLocations } from '../../actions/LocationActions';
+import React, { useState, useContext } from 'react';
+import { getLocations, changeLocation } from '../../actions/LocationActions';
 import { PlayerContext } from '../../context/PlayerContext';
 import './Map.css';
 
 const Map = () => {
-    const { player } = useContext(PlayerContext);
-    const [mapSetting, setMapSetting] = useState({
-        background: null,
+	const { player } = useContext(PlayerContext);
+	const [settings, setSetting] = useState({
+		background: null,
 		exitButton: [],
 		images: [],
 		width: 500,
 		height: 268,
-    });
-    const [location, setLocation] = useState({});
+		isLoading: true,
+	});
+	const [location, setLocation] = useState({});
 
-    useEffect(() => {
-        if(player.location_id) {
-            getLocations(player.location_id).then(res => {
-                setLocation(res)
-            });
-        }
-    }, [player.location_id]);     
+	if (player.location_id) {
+		getLocations(player.location_id).then(res => {
+			setLocation(res);
+			setSetting({ ...settings, isLoading: false });
+        });
+	}
+
     const rooms = location.rooms;
-    const handleClick = () => {
-        console.log(123);
+
+    const test = (id) => {
+        console.log(id);
         
     }
-    return (
-        <div className="map">
-            {location.name}
-            {(rooms)? rooms.map((room, index) => <Room key={index} room={room} changeLocation={handleClick} />):null}
-        </div>
-    );
-}
 
-const Room = (props) => {
+	return (
+		<div
+			className="map"
+			style={{ width: settings.width, height: settings.height }}
+		>
+			{settings.isLoading ? (
+				<div>Loading...</div>
+			) : (
+				<div className="location">
+					{location.name}
+					{rooms
+						? rooms.map((room, index) => <Room key={index} room={room} test={test} />)
+						: null}
+				</div>
+			)}
+		</div>
+	);
+};
+
+const Room = props => {
     const { room } = props;
-    const pathCities = '/assets/cities'; 
-    return (
-        <React.Fragment>
-            <img onClick={props.changeLocation(room.id)} src={pathCities + room.model} alt={room.name} />
-        </React.Fragment>
-    );
-}
+    const pathCities = '/assets/cities';
+ 
+	return (
+		<div className="room" style={{left:room.x,top:room.y}}>
+			<img src={pathCities + room.model} alt={room.name} onClick={props.test.bind(null, room.id)} />
+		</div>
+	);
+};
 
 export default Map;

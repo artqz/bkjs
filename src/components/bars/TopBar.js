@@ -13,28 +13,29 @@ const TopBar = () => {
 	let lineHpColor;
 	if (lineCurrentHp <= 19) {
 		lineHpColor = 'red';
-	}
-	else if (lineCurrentHp <= 45) {
+	} else if (lineCurrentHp <= 45) {
 		lineHpColor = 'yellow';
-	}
-	else lineHpColor = 'green';	
-	
-	useEffect(() => {
-		const id = setInterval(() => {
-			getPlayerInfo().then(res => {
-				setPlayer(res);
-			});
-		}, 3000);
-		intervalRef.current = id;
-		return () => {
-			clearInterval(intervalRef.current);
-		};
-	}, [player.hp_current]);
+	} else lineHpColor = 'green';
+
+	useEffect(
+		() => {
+			const id = setInterval(() => {
+				getPlayerInfo().then(res => {
+					setPlayer(res);
+				});
+			}, 3000);
+			intervalRef.current = id;
+			return () => {
+				clearInterval(intervalRef.current);
+			};
+		},
+		[player.hp_current]
+	);
 
 	const handleLogout = () => {
 		logout();
 		setAuth({ auth: false });
-	}
+	};
 	return (
 		<div className="topBar">
 			<div className="player">
@@ -43,10 +44,17 @@ const TopBar = () => {
 					className="hp"
 					data-progress={player.hp_current + '/' + player.hp_max}
 				>
-					<span className="current" style={{ width: lineCurrentHp + '%', backgroundColor: lineHpColor }} />
+					<span
+						className="current"
+						style={{ width: lineCurrentHp + '%', backgroundColor: lineHpColor }}
+					/>
 				</div>
 			</div>
-			<div><a href="/" onClick={handleLogout}>Logout</a></div>
+			<div>
+				<a href="/" onClick={handleLogout}>
+					Logout
+				</a>
+			</div>
 		</div>
 	);
 };
