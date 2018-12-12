@@ -12,6 +12,8 @@ const Map = () => {
 		isLoading: true,
 	});
 	const [location, setLocation] = useState({});
+	const pathCities = '/assets/cities';
+
 	useEffect(
 		() => {
 			if (player.location_id) {
@@ -38,7 +40,7 @@ const Map = () => {
 			style={{
 				width: settings.width,
 				height: settings.height,
-				backgroundImage: '/assets/cities' + location.background,
+				backgroundImage: 'url(' + pathCities + location.background + ')',
 			}}
 		>
 			{location.location_id ? (

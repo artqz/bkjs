@@ -29,6 +29,7 @@ const emotes = [
 	{ name: 'LUL', src: 'assets/emotes/twitch/LUL.0' },
 	{ name: 'MingLee', src: 'assets/emotes/twitch/MingLee.0' },
 	{ name: 'PogChamp', src: 'assets/emotes/twitch/PogChamp.0' },
+	{ name: 'WutFace', src: 'assets/emotes/twitch/WutFace.0' },
 ];
 
 const Message = props => {
