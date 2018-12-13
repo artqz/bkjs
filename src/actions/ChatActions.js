@@ -44,8 +44,6 @@ export const sendMessage = message => {
 	return axios
 		.post(`${process.env.REACT_APP_API_URL}/api/chat`, data, config)
 		.then(res => {
-			console.log(res);
-
 			return res.data;
 		});
 };

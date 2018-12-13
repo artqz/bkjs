@@ -7,14 +7,23 @@ import TopBar from '../components/bars/TopBar';
 import Character from '../components/character/Character';
 import Map from '../components/map/Map';
 import Fights from '../components/fights/Fights';
+import Pvp from '../components/fights/Pvp';
 
 const GamePage = () => {
+	const { player } = useContext(PlayerContext);
+
 	return (
 		<div>
 			<TopBar />
-			<Character />
-			<Map />
-			<Fights />
+			{player.in_battle ? (
+				<Pvp />
+			) : (
+				<React.Fragment>
+					<Character />
+					<Map />
+					<Fights />
+				</React.Fragment>
+			)}
 			<Chat />
 		</div>
 	);

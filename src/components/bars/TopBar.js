@@ -20,7 +20,11 @@ const TopBar = () => {
 	useEffect(() => {
 		const id = setInterval(() => {
 			getPlayerInfo().then(res => {
-				setPlayer({ ...player, hp_current: res.hp_current });
+				setPlayer({
+					...player,
+					hp_current: res.hp_current,
+					in_battle: res.in_battle,
+				});
 			});
 		}, 3000);
 		intervalRef.current = id;
