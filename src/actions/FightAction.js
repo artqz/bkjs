@@ -64,3 +64,19 @@ export const currentFight = () => {
 			return res.data;
 		});
 };
+
+export const attack = () => {
+	const data = {};
+	const token = getToken();
+	const config = {
+		headers: {
+			Authorization: 'Bearer ' + token,
+			Accept: 'application/json',
+		},
+	};
+	return axios
+		.post(`${process.env.REACT_APP_API_URL}/api/fights/attack`, data, config)
+		.then(res => {
+			return res.data;
+		});
+};

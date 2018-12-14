@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { currentFight } from '../../actions/FightAction';
+import { currentFight, attack } from '../../actions/FightAction';
 const Pvp = () => {
     const intervalRef = useRef();
 	useEffect(() => {
@@ -12,10 +12,15 @@ const Pvp = () => {
 		return () => {
 			clearInterval(intervalRef.current);
 		};
-	}, []);
+    }, []);
+    const handleClickAttack = () => {
+        attack().then(res => {
+            console.log(res);            
+        })
+    }
 	return (
 		<div>
-			<button>Uebat!</button>
+			<button onClick={handleClickAttack}>Uebat!</button>
 		</div>
 	);
 };
