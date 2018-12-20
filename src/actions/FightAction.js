@@ -10,7 +10,7 @@ export const getFights = () => {
 		},
 	};
 	return axios
-		.get(`${process.env.REACT_APP_API_URL}/api/fights`, config)
+		.get(`${process.env.REACT_APP_API_URL}/api/battles`, config)
 		.then(res => {
 			return res.data;
 		});
@@ -26,7 +26,7 @@ export const addFight = () => {
 		},
 	};
 	return axios
-		.post(`${process.env.REACT_APP_API_URL}/api/fights`, data, config)
+		.post(`${process.env.REACT_APP_API_URL}/api/battles`, data, config)
 		.then(res => {
 			return res.data;
 		});
@@ -42,7 +42,7 @@ export const takeFight = fightId => {
 		},
 	};
 	return axios
-		.put(`${process.env.REACT_APP_API_URL}/api/fights/${fightId}`, data, config)
+		.put(`${process.env.REACT_APP_API_URL}/api/battles/${fightId}`, data, config)
 		.then(res => {
 			return res.data;
 		});
@@ -57,7 +57,7 @@ export const currentFight = () => {
 		},
 	};
 	return axios
-		.get(`${process.env.REACT_APP_API_URL}/api/fights/current`, config)
+		.get(`${process.env.REACT_APP_API_URL}/api/battles/current`, config)
 		.then(res => {
             console.log(res);
             
@@ -75,7 +75,7 @@ export const attack = () => {
 		},
 	};
 	return axios
-		.post(`${process.env.REACT_APP_API_URL}/api/fights/attack`, data, config)
+		.post(`${process.env.REACT_APP_API_URL}/api/battles/attack`, data, config)
 		.then(res => {
 			return res.data;
 		});

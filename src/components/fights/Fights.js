@@ -35,7 +35,7 @@ const Fights = () => {
 			{fights
 				? fights.map((fight, index) => (
 						<div key={index}>
-							{fight.id} - {fight.user.name} [{fight.user.level}]{' '}
+							{fight.id} - {fight.user1.name} [{fight.user1.level}]{' '}
 							<button onClick={handleTakeFight.bind(null, fight.id)}>
 								Fight
 							</button>
