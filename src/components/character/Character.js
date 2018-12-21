@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
-import { PlayerContext } from '../../context/PlayerContext';
+import React from 'react';
 import './Character.css';
 
 const Character = props => {
-	const { player } = useContext(PlayerContext);
+	const { player } = props;
 
 	const pathAvatars = '/assets/avatars/';
 	const pathItems = '/assets/items/';
@@ -96,6 +95,7 @@ const Character = props => {
 
 	return (
 		<div className="character">
+            <div>{player.name} - {player.hp_current}</div>
 			<div className="avatar">
 				<img src={pathAvatars + player.avatar} alt={player.name} />
 			</div>

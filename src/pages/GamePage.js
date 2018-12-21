@@ -19,7 +19,7 @@ const GamePage = () => {
 				<Pvp />
 			) : (
 				<React.Fragment>
-					<Character />
+					<Character player={player} />
 					<Map />
 					<Fights />
 				</React.Fragment>
