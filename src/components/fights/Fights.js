@@ -19,7 +19,7 @@ const Fights = () => {
 		return () => {
 			clearInterval(intervalRef.current);
 		};
-	}, []);
+	}, [fights]);
 	const handleClick = () => {
 		addFight().then(res => console.log(res));
 		sendMessage('<--- Этот уебок подал заявку на бой!');
