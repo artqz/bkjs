@@ -95,7 +95,9 @@ const Character = props => {
 
 	return (
 		<div className="character">
-            <div>{player.name} - {player.hp_current}</div>
+			<div>
+				{player.name} - {player.hp_current}
+			</div>
 			<div className="avatar">
 				<img src={pathAvatars + player.avatar} alt={player.name} />
 			</div>

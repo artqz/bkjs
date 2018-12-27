@@ -9,17 +9,20 @@ const Fights = () => {
 	const [fights, setFight] = useState([]);
 	const intervalRef = useRef();
 
-	useEffect(() => {
-		const id = setInterval(() => {
-			getFights().then(res => {
-				setFight(res);
-			});
-		}, 5000);
-		intervalRef.current = id;
-		return () => {
-			clearInterval(intervalRef.current);
-		};
-	}, [fights]);
+	useEffect(
+		() => {
+			const id = setInterval(() => {
+				getFights().then(res => {
+					setFight(res);
+				});
+			}, 5000);
+			intervalRef.current = id;
+			return () => {
+				clearInterval(intervalRef.current);
+			};
+		},
+		[fights]
+	);
 	const handleClick = () => {
 		addFight().then(res => console.log(res));
 		sendMessage('<--- Этот уебок подал заявку на бой!');
@@ -35,14 +38,12 @@ const Fights = () => {
 			{fights
 				? fights.map((fight, index) => (
 						<div key={index}>
-                            {fight.id} - {fight.user1.name} [{fight.user1.level}]{' '}
-                            {fight.user1.id === player.id
-                                ? null 
-                                : ((
-                                    <button onClick={handleTakeFight.bind(null, fight.id)}>
-                                        Fight
-                                    </button>
-                                ))}							
+							{fight.id} - {fight.user1.name} [{fight.user1.level}]{' '}
+							{fight.user1.id === player.id ? null : (
+								<button onClick={handleTakeFight.bind(null, fight.id)}>
+									Fight
+								</button>
+							)}
 						</div>
 				  ))
 				: null}

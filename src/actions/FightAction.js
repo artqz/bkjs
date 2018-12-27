@@ -42,7 +42,11 @@ export const takeFight = fightId => {
 		},
 	};
 	return axios
-		.put(`${process.env.REACT_APP_API_URL}/api/battles/${fightId}`, data, config)
+		.put(
+			`${process.env.REACT_APP_API_URL}/api/battles/${fightId}`,
+			data,
+			config
+		)
 		.then(res => {
 			return res.data;
 		});
@@ -59,8 +63,8 @@ export const currentFight = () => {
 	return axios
 		.get(`${process.env.REACT_APP_API_URL}/api/battles/current`, config)
 		.then(res => {
-            console.log(res);
-            
+			console.log(res);
+
 			return res.data;
 		});
 };
