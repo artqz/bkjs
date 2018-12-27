@@ -52,10 +52,18 @@ const Pvp = () => {
 									<Character player={battle.user2} />
 									<Character player={battle.user1} />
 								</div>
-							)}
+                            )}
+                            <button onClick={handleClickAttack}>Uebat!</button>
+                            {battle.rounds ? (
+                                <div className="textPvp">
+                                    {battle.rounds.map((round, index) => (
+                                        <div key={index}>{round.text}</div>
+                                    ))}
+                                </div>
+                                
+                            ) : null}
 						</div>
 					) : null}
-					<button onClick={handleClickAttack}>Uebat!</button>
 				</React.Fragment>
 			)}
 		</div>
