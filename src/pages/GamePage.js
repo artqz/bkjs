@@ -4,6 +4,7 @@ import { PlayerContext } from '../context/PlayerContext';
 
 import Chat from '../components/chat/Chat';
 import TopBar from '../components/bars/TopBar';
+import MenuBar from '../components/bars/MenuBar';
 import Character from '../components/character/Character';
 import Map from '../components/map/Map';
 import Fights from '../components/fights/Fights';
@@ -24,6 +25,7 @@ const GamePage = () => {
 					<Fights />
 				</React.Fragment>
 			)}
+			<MenuBar/>
 			<Chat />
 		</div>
 	);
