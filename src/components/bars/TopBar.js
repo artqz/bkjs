@@ -51,6 +51,8 @@ const TopBar = () => {
 					/>
 				</div>
 			</div>
+			<div>Wins: {player.count_wins}</div>
+			<div>Loses: {player.count_loses}</div>
 			<div>
 				<a href="/" onClick={handleLogout}>
 					Logout

@@ -25,7 +25,6 @@ const Fights = () => {
 	);
 	const handleClick = () => {
 		addFight().then(res => console.log(res));
-		sendMessage('<--- Этот уебок подал заявку на бой!');
 	};
 	const handleTakeFight = fightId => {
 		takeFight(fightId).then(res => {

@@ -57,7 +57,9 @@ const Message = props => {
 	return (
 		<div className="message">
 			<span className="date">{moment(message.date).format('HH:mm')}</span>
-			<span className="username">{message.user.name}:</span>
+			<span className="username">
+				{message.is_system ? 'Системное сообщение' : message.sender.name}:
+			</span>
 			<span className="text">{textAndEmoties}</span>
 		</div>
 	);
