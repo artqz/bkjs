@@ -62,9 +62,13 @@ const Pvp = () => {
 								</div>
 							)}
 							<div className="hotKeyPanel">
-								<span className="key1" onClick={handleClickAttack}>
+								<span className="key" onClick={handleClickAttack}>
 									<img src={pathSkills + 'might.png'} alt="Attack" />
 								</span>
+								<span className="key"></span>
+								<span className="key"></span>
+								<span className="key"></span>
+								<span className="key"></span>
 							</div>
 						</div>
 					) : null}

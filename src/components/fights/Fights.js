@@ -11,6 +11,9 @@ const Fights = () => {
 
 	useEffect(
 		() => {
+			getFights().then(res => {
+				setFight(res);
+			});
 			const id = setInterval(() => {
 				getFights().then(res => {
 					setFight(res);
