@@ -26,7 +26,7 @@ export const changeLocation = (playerId, locationId) => {
 	};
 	return axios
 		.put(
-			`http://127.0.0.1:8000/api/users/${playerId}?update=location`,
+			`${process.env.REACT_APP_API_URL}/api/users/${playerId}?update=location`,
 			{
 				location_id: locationId,
 			},
