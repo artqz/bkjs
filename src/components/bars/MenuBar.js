@@ -1,9 +1,9 @@
 import React from 'react';
 
+import './MenuBar.css';
+
 const MenuBar = () => {
-    return (
-        <div>map</div>
-    );
+	return <div className="gameMenu">map</div>;
 };
 
 export default MenuBar;

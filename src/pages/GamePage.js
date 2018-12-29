@@ -10,6 +10,8 @@ import Map from '../components/map/Map';
 import Fights from '../components/fights/Fights';
 import Pvp from '../components/fights/Pvp';
 
+import './GamePage.css';
+
 const GamePage = () => {
 	const { player } = useContext(PlayerContext);
 
@@ -17,15 +19,17 @@ const GamePage = () => {
 		<div>
 			<TopBar />
 			{player.in_battle ? (
-				<Pvp />
+				<div className="battleground">
+					<Pvp />
+				</div>
 			) : (
-				<React.Fragment>
+				<div className="playground">
 					<Character player={player} />
 					<Map />
 					<Fights />
-				</React.Fragment>
+					<MenuBar />
+				</div>
 			)}
-			<MenuBar/>
 			<Chat />
 		</div>
 	);

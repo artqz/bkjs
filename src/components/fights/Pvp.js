@@ -2,11 +2,16 @@ import React, { useEffect, useRef, useState, useContext } from 'react';
 import { PlayerContext } from '../../context/PlayerContext';
 import { currentFight, attack } from '../../actions/FightAction';
 import Character from '../character/Character';
+
+import './Pvp.css';
+
 const Pvp = () => {
 	const { player } = useContext(PlayerContext);
 	const [settings, setSetting] = useState({ isWhite: false });
 	const [battle, setBattle] = useState({});
 	const intervalRef = useRef();
+	const pathSkills = '/assets/skills/';
+
 	useEffect(() => {
 		currentFight().then(res => {
 			setBattle(res);
@@ -31,13 +36,16 @@ const Pvp = () => {
 	const handleClickAttack = () => {
 		attack().then(res => {
 			setSetting({ isWhite: true });
-			console.log(res);
 		});
 	};
+
 	return (
 		<div>
 			{settings.isWhite ? (
-				<span>Ожидаеем ход противника</span>
+				<React.Fragment>
+					<Character player={player} />
+					<div className="doll">Ждем ход противника</div>
+				</React.Fragment>
 			) : (
 				<React.Fragment>
 					{battle.user1 ? (
@@ -45,15 +53,19 @@ const Pvp = () => {
 							{battle.user1.id === player.id ? (
 								<div>
 									<Character player={battle.user1} />
-									<Character player={battle.user2} />
+									<Character player={battle.user2} target={true} />
 								</div>
 							) : (
 								<div>
 									<Character player={battle.user2} />
-									<Character player={battle.user1} />
+									<Character player={battle.user1} target={true} />
 								</div>
 							)}
-							<button onClick={handleClickAttack}>Uebat!</button>
+							<div className="hotKeyPanel">
+								<span className="key1" onClick={handleClickAttack}>
+									<img src={pathSkills + 'might.png'} alt="Attack" />
+								</span>
+							</div>
 						</div>
 					) : null}
 				</React.Fragment>

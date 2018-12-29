@@ -1,5 +1,7 @@
 .fights {
     background-color: tomato;
+    width: 400px;
+    margin: 0 auto;
 }
 
 .textPvp {

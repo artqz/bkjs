@@ -2,7 +2,15 @@ import React from 'react';
 import './Character.css';
 
 const Character = props => {
-	const { player } = props;
+	const { player, target } = props;
+
+	const lineCurrentHp = (player.hp_current / player.hp_max) * 100;
+	let lineHpColor;
+	if (lineCurrentHp <= 19) {
+		lineHpColor = 'red';
+	} else if (lineCurrentHp <= 45) {
+		lineHpColor = 'yellow';
+	} else lineHpColor = 'green';
 
 	const pathAvatars = '/assets/avatars/';
 	const pathItems = '/assets/items/';
@@ -94,9 +102,18 @@ const Character = props => {
 	];
 
 	return (
-		<div className="character">
+		<div className={target ? 'character target' : 'character user'}>
 			<div>
-				{player.name} - {player.hp_current}
+				{player.name} [{player.level}]
+			</div>
+			<div
+				className="hp"
+				data-progress={player.hp_current + '/' + player.hp_max}
+			>
+				<span
+					className="current"
+					style={{ width: lineCurrentHp + '%', backgroundColor: lineHpColor }}
+				/>
 			</div>
 			<div className="avatar">
 				<img src={pathAvatars + player.avatar} alt={player.name} />

@@ -1,13 +1,72 @@
 .character {
-    border: 1px solid #000;
-    background-color: #3e2d2f;
+    border: 1px solid #bdbdbd;
+    background-color: #ccc;
+    border-radius: 4px;
     width: 250px;
     height: 282px;
     text-align: center;
-    position: relative;
+    position: absolute;
     display: inline-block;
 }
 
+.character .hp {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    margin:auto;
+    background-color: #0000005e;
+    width: 150px;
+    height: 15px;
+    display: flex;
+    color: white;    
+    align-items: center;
+    z-index: 1;
+}
+.character .hp > .current {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    /* background: linear-gradient(to top, #090, #0a0, #0c0, #0a0); */
+    display: block;
+    height: 15px;
+    z-index: -1;
+}
+.character .hp:after {
+    content: attr(data-progress) '';
+    font-size: 11px;
+    font-weight: bold;
+    display: block;
+    margin: auto;
+    text-shadow: 
+		-0   -1px 0   #000000,
+		 0   -1px 0   #000000,
+		-0    1px 0   #000000,
+		 0    1px 0   #000000,
+		-1px -0   0   #000000,
+		 1px -0   0   #000000,
+		-1px  0   0   #000000,
+		 1px  0   0   #000000,
+		-1px -1px 0   #000000,
+		 1px -1px 0   #000000,
+		-1px  1px 0   #000000,
+		 1px  1px 0   #000000,
+		-1px -1px 0   #000000,
+		 1px -1px 0   #000000,
+		-1px  1px 0   #000000,
+		 1px  1px 0   #000000;
+  }
+
+.character.user {
+    top: 10px;
+    left: 10px;
+}
+.character.target {
+    top: 10px;
+    right: 10px;
+}
 .character .avatar {
     margin-top: 40px;
 }
