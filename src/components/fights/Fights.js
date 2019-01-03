@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { PlayerContext } from '../../context/PlayerContext';
-import { sendMessage } from '../../actions/ChatActions';
 import { getFights, addFight, takeFight } from '../../actions/FightAction';
 import './Fights.css';
 

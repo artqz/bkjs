@@ -9,12 +9,17 @@ import Character from '../components/character/Character';
 import Map from '../components/map/Map';
 import Fights from '../components/fights/Fights';
 import Pvp from '../components/fights/Pvp';
+import Shop from '../components/shop/Shop';
 
 import './GamePage.css';
 
 const GamePage = () => {
 	const { player } = useContext(PlayerContext);
-
+	let locationType;
+	if(player.location) {
+		locationType = player.location.type;		
+	}
+	
 	return (
 		<div>
 			<TopBar />
@@ -26,7 +31,8 @@ const GamePage = () => {
 				<div className="playground">
 					<Character player={player} />
 					<Map />
-					<Fights />
+					{locationType === 'arena' ? <Fights /> : null}
+					{locationType === 'shop' ? <Shop /> : null}
 					<MenuBar />
 				</div>
 			)}

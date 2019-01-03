@@ -10,8 +10,8 @@ export const getPlayerInfo = () => {
 	};
 
 	return axios
-		.get(`${process.env.REACT_APP_API_URL}/api/user`, config)
-		.then(res => {
+		.get(`${process.env.REACT_APP_API_URL}/api/users/self`, config)
+		.then(res => {									
 			return res.data;
 		})
 		.catch(err => {
