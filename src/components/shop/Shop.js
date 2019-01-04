@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { PlayerContext } from '../../context/PlayerContext';
-import { getShopInfo } from '../../actions/ShopAction';
+import { getShopInfo, buyItem } from '../../actions/ShopActions';
+import { getPlayerInfo } from '../../actions/PlayerActions';
 
 import './Shop.css';
 
 const Shop = () => {
-	const { player } = useContext(PlayerContext);
+	const { player, setPlayer } = useContext(PlayerContext);
 	const [shop, setShop] = useState();
 	const [settings, setSetting] = useState({
 		isLoading: true,
@@ -25,8 +26,12 @@ const Shop = () => {
 		setSetting({ showItemInfo: true, selectItem: item });
 	};
 
-	const buyItem = (itemId, userId) => {
-		console.log(itemId);
+	const getItem = (itemId, userId) => {
+		buyItem(itemId).then(res => {
+			getPlayerInfo().then(res => {
+				setPlayer({ ...player, items: res.items });
+			});
+		});
 	};
 
 	const leftTo6 = num => {
@@ -80,7 +85,7 @@ const Shop = () => {
 					</div>
 					<div
 						className="shopItemBuy"
-						onClick={buyItem.bind(null, settings.selectItem.id, player.id)}
+						onClick={getItem.bind(null, settings.selectItem.id, player.id)}
 					>
 						Buy
 					</div>

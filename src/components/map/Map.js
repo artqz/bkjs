@@ -38,7 +38,23 @@ const Map = () => {
 		});
 	};
 
-	return (
+	//скрываем карту если находимся в здании
+	let mapHide = false;
+	switch (location.type) {
+		case 'arena':
+			mapHide = true;
+			break;
+		case 'shop':
+			mapHide = true;
+			break;
+		case 'bank':
+			mapHide = true;
+			break;
+		default:
+			mapHide = false;
+	}
+
+	return !mapHide ? (
 		<div
 			className="map"
 			style={{
@@ -62,6 +78,10 @@ const Map = () => {
 						: null}
 				</div>
 			)}
+		</div>
+	) : (
+		<div className="map">
+			<button onClick={handleClick.bind(null, 1)}>Выход</button>
 		</div>
 	);
 };

@@ -10,6 +10,7 @@ import Map from '../components/map/Map';
 import Fights from '../components/fights/Fights';
 import Pvp from '../components/fights/Pvp';
 import Shop from '../components/shop/Shop';
+import Inventory from '../components/character/Inventory';
 
 import './GamePage.css';
 
@@ -32,7 +33,12 @@ const GamePage = () => {
 					<Character player={player} />
 					<Map />
 					{locationType === 'arena' ? <Fights /> : null}
-					{locationType === 'shop' ? <Shop /> : null}
+					{locationType === 'shop' ? (
+						<React.Fragment>
+							<Shop />
+							<Inventory />
+						</React.Fragment>
+					) : null}
 					<MenuBar />
 				</div>
 			)}

@@ -101,6 +101,17 @@ const Character = props => {
 		},
 	];
 
+	//Определяем одеты вещи
+	if (player.items) {
+		const equipItems = player.items.filter(item => item.slot != null);
+		//Заносим вещи в слоты
+		slots.forEach((slot, index) => {
+			equipItems.forEach(item => {
+				if (slot.name === item.slot) slot.item = item;
+			});
+		});
+	}
+
 	return (
 		<div className={target ? 'character target' : 'character user'}>
 			<div>
@@ -129,10 +140,15 @@ const Character = props => {
 
 const Slot = props => {
 	const { slot } = props;
+	const pathItems = '/assets/items/';
 
 	return (
 		<div className={slot.className}>
-			<img src={slot.image} alt={slot.name} />
+			{slot.item.icon ? (
+				<img src={pathItems + slot.item.icon} alt={slot.item.name} />
+			) : (
+				<img src={slot.image} alt={slot.name} />
+			)}
 		</div>
 	);
 };

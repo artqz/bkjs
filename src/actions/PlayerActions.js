@@ -18,6 +18,23 @@ export const getPlayerInfo = () => {
 			return removeItem();
 		});
 };
+
+export const equipItem = item => {
+	const token = getToken();
+	const data = { item: item };
+	const config = {
+		headers: {
+			Authorization: 'Bearer ' + token,
+			Accept: 'application/json',
+		},
+	};
+	return axios
+		.post(`${process.env.REACT_APP_API_URL}/api/users/equip_item`, data, config)
+		.then(res => {
+			return res.data;
+		});
+};
+
 const getToken = () => {
 	return localStorage.getItem('token');
 };
