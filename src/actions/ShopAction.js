@@ -15,3 +15,19 @@ export const getShopInfo = locationId => {
 			return res.data;
 		});
 };
+
+export const buyItem = itemId => {
+	const data = { item_id: itemId };
+	const token = getToken();
+	const config = {
+		headers: {
+			Authorization: 'Bearer ' + token,
+			Accept: 'application/json',
+		},
+	};
+	return axios
+		.post(`${process.env.REACT_APP_API_URL}/api/items`, data, config)
+		.then(res => {
+			return res.data;
+		});
+};

@@ -1,16 +1,17 @@
 .shop {
     width: 230px;
-    border: 1px solid #2f2022;
-    background-color: #3e2d2f;
+    border: 1px solid #bdbdbd;
+    background-color: #ccc;
     user-select: none;
     position: absolute;
     left:0;
     right:0;
     margin: 0 auto;
+    border-radius: 4px;
 }
 .shopName {
-    background-color: #2f2022;
-    color: #fff;
+    background-color: #bdbdbd;
+    color: #000;
     text-transform: uppercase;
     font-weight: bold;
     border-bottom-left-radius: 6px;
@@ -35,8 +36,8 @@
 }
 .shopSlot .itemFrame {
     border: 1px solid #000;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     position: absolute;
     cursor: pointer;
 }
@@ -58,7 +59,7 @@
 .shopItemDesc {
     display: inline-block;
     border: 1px solid #000;
-    background-color: #2b1f21;
+    background-color: #8e8e8e;
     width: 75%;
     font-size: 13px;
     padding: 5px;
