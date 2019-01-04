@@ -30,10 +30,10 @@ const Map = () => {
 
 	const handleClick = locationId => {
 		changeLocation(player.id, locationId).then(res => {
-			setPlayer({ 
-				...player, 
-				location_id: res.location_id,				
-				location: res.location 
+			setPlayer({
+				...player,
+				location_id: res.location_id,
+				location: res.location,
 			});
 		});
 	};

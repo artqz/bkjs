@@ -16,10 +16,10 @@ import './GamePage.css';
 const GamePage = () => {
 	const { player } = useContext(PlayerContext);
 	let locationType;
-	if(player.location) {
-		locationType = player.location.type;		
+	if (player.location) {
+		locationType = player.location.type;
 	}
-	
+
 	return (
 		<div>
 			<TopBar />

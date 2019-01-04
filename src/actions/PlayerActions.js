@@ -11,7 +11,7 @@ export const getPlayerInfo = () => {
 
 	return axios
 		.get(`${process.env.REACT_APP_API_URL}/api/users/self`, config)
-		.then(res => {									
+		.then(res => {
 			return res.data;
 		})
 		.catch(err => {

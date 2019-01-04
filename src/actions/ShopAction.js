@@ -10,7 +10,10 @@ export const getShopInfo = locationId => {
 		},
 	};
 	return axios
-		.get(`${process.env.REACT_APP_API_URL}/api/shops/location/${locationId}`, config)
+		.get(
+			`${process.env.REACT_APP_API_URL}/api/shops/location/${locationId}`,
+			config
+		)
 		.then(res => {
 			return res.data;
 		});
