@@ -37,7 +37,7 @@ const Pvp = () => {
 		attack().then(res => {
 			setSetting({ isWhite: true });
 		});
-	};	
+	};
 
 	return (
 		<div>

@@ -28,7 +28,10 @@ export const equipItem = itemId => {
 		},
 	};
 	return axios
-		.get(`${process.env.REACT_APP_API_URL}/api/users/equip_item/${itemId}`, config)
+		.get(
+			`${process.env.REACT_APP_API_URL}/api/users/equip_item/${itemId}`,
+			config
+		)
 		.then(res => {
 			return res.data;
 		});

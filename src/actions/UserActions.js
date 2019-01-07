@@ -10,10 +10,7 @@ export const EuqipItems = locationId => {
 		},
 	};
 	return axios
-		.get(
-			`${process.env.REACT_APP_API_URL}/api/users/equip_item`,
-			config
-		)
+		.get(`${process.env.REACT_APP_API_URL}/api/users/equip_item`, config)
 		.then(res => {
 			return res.data;
 		});

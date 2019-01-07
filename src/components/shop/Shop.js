@@ -18,7 +18,7 @@ const Shop = () => {
 	useEffect(() => {
 		getShopInfo(player.location_id).then(res => {
 			console.log(res);
-			
+
 			setShop(res);
 			setSetting({ ...settings, isLoading: false });
 		});

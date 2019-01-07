@@ -30,7 +30,7 @@ const Inventory = () => {
 		goldCount = goldItem['count'];
 	} else goldCount = 0;
 
-	const handleEquipItem = item => {	
+	const handleEquipItem = item => {
 		equipItem(item.id).then(res => {
 			getPlayerInfo().then(res => {
 				setPlayer({ ...player, items: res.items });
@@ -39,7 +39,6 @@ const Inventory = () => {
 	};
 
 	console.log(player);
-	
 
 	return (
 		<div className="inventory">
