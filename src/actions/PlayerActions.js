@@ -19,9 +19,8 @@ export const getPlayerInfo = () => {
 		});
 };
 
-export const equipItem = item => {
+export const equipItem = itemId => {
 	const token = getToken();
-	const data = { item: item };
 	const config = {
 		headers: {
 			Authorization: 'Bearer ' + token,
@@ -29,7 +28,7 @@ export const equipItem = item => {
 		},
 	};
 	return axios
-		.post(`${process.env.REACT_APP_API_URL}/api/users/equip_item`, data, config)
+		.get(`${process.env.REACT_APP_API_URL}/api/users/equip_item/${itemId}`, config)
 		.then(res => {
 			return res.data;
 		});

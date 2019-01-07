@@ -16,13 +16,13 @@ const Character = props => {
 	const pathItems = '/assets/items/';
 	const slots = [
 		{
-			name: 'helmet',
+			name: 'head',
 			className: 'item itemHelmet',
 			image: pathItems + '/inventory/helmet.png',
 			item: [],
 		},
 		{
-			name: 'armor',
+			name: 'chest',
 			className: 'item itemArmor',
 			image: pathItems + '/inventory/armor.png',
 			item: [],
@@ -34,7 +34,7 @@ const Character = props => {
 			item: [],
 		},
 		{
-			name: 'pants',
+			name: 'legs',
 			className: 'item itemPants',
 			image: pathItems + '/inventory/pants.png',
 			item: [],
@@ -58,7 +58,7 @@ const Character = props => {
 			item: [],
 		},
 		{
-			name: 'shoes',
+			name: 'feet',
 			className: 'item itemShoes',
 			image: pathItems + '/inventory/shoes.png',
 			item: [],

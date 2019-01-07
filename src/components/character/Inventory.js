@@ -30,15 +30,16 @@ const Inventory = () => {
 		goldCount = goldItem['count'];
 	} else goldCount = 0;
 
-	const handleEquipItem = item => {
-		console.log(item);
-
-		equipItem(item).then(res => {
+	const handleEquipItem = item => {	
+		equipItem(item.id).then(res => {
 			getPlayerInfo().then(res => {
 				setPlayer({ ...player, items: res.items });
 			});
 		});
 	};
+
+	console.log(player);
+	
 
 	return (
 		<div className="inventory">
