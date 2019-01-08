@@ -20,7 +20,7 @@ const Bank = () => {
 		<div className="bank">
 			<div>Bank</div>
 			<div>
-				У Вас <b>{goldItem.count}</b> Gold
+				У Вас <b>{goldItem ? goldItem.count : 0}</b> Gold
 			</div>
 			<button onClick={giveMeMany}>Взять соточку</button>
 		</div>
