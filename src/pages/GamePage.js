@@ -11,6 +11,7 @@ import Fights from '../components/fights/Fights';
 import Pvp from '../components/fights/Pvp';
 import Shop from '../components/shop/Shop';
 import Inventory from '../components/character/Inventory';
+import Bank from '../components/bank/Bank';
 
 import './GamePage.css';
 
@@ -33,6 +34,7 @@ const GamePage = () => {
 					<Character player={player} />
 					<Map />
 					{locationType === 'arena' ? <Fights /> : null}
+					{locationType === 'bank' ? <Bank /> : null}
 					{locationType === 'shop' ? (
 						<React.Fragment>
 							<Shop />

@@ -37,6 +37,23 @@ export const equipItem = itemId => {
 		});
 };
 
+export const getGold = () => {
+	const token = getToken();
+	const config = {
+		headers: {
+			Authorization: 'Bearer ' + token,
+			Accept: 'application/json',
+		},
+	};
+	return axios
+		.get(`${process.env.REACT_APP_API_URL}/api/users/get_gold`, config)
+		.then(res => {
+			console.log(res);
+
+			return res;
+		});
+};
+
 const getToken = () => {
 	return localStorage.getItem('token');
 };
