@@ -37,6 +37,24 @@ export const equipItem = itemId => {
 		});
 };
 
+export const playerRemoveItem = itemId => {
+	const token = getToken();
+	const config = {
+		headers: {
+			Authorization: 'Bearer ' + token,
+			Accept: 'application/json',
+		},
+	};
+	return axios
+		.get(
+			`${process.env.REACT_APP_API_URL}/api/users/remove_item/${itemId}`,
+			config
+		)
+		.then(res => {
+			return res.data;
+		});
+};
+
 export const getGold = () => {
 	const token = getToken();
 	const config = {
@@ -48,8 +66,6 @@ export const getGold = () => {
 	return axios
 		.get(`${process.env.REACT_APP_API_URL}/api/users/get_gold`, config)
 		.then(res => {
-			console.log(res);
-
 			return res;
 		});
 };

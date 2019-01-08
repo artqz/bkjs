@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { PlayerContext } from '../../context/PlayerContext';
+import { getPlayerInfo, playerRemoveItem } from '../../actions/PlayerActions';
+
 import './Character.css';
 
 const Character = props => {
@@ -139,13 +142,26 @@ const Character = props => {
 };
 
 const Slot = props => {
+	const { player, setPlayer } = useContext(PlayerContext);
 	const { slot } = props;
 	const pathItems = '/assets/items/';
+
+	const handleOnClick = itemId => {
+		playerRemoveItem(itemId).then(res => {
+			getPlayerInfo().then(res => {
+				setPlayer({ ...player, items: res.items });
+			});
+		});
+	};
 
 	return (
 		<div className={slot.className}>
 			{slot.item.icon ? (
-				<img src={pathItems + slot.item.icon} alt={slot.item.name} />
+				<img
+					src={pathItems + slot.item.icon}
+					alt={slot.item.name}
+					onDoubleClick={() => handleOnClick(slot.item.id)}
+				/>
 			) : (
 				<img src={slot.image} alt={slot.name} />
 			)}

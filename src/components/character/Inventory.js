@@ -38,8 +38,6 @@ const Inventory = () => {
 		});
 	};
 
-	console.log(player);
-
 	return (
 		<div className="inventory">
 			<div className="inventoryTitle">Inventory</div>
