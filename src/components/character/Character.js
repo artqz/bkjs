@@ -147,11 +147,13 @@ const Slot = props => {
 	const pathItems = '/assets/items/';
 
 	const handleOnClick = itemId => {
-		playerRemoveItem(itemId).then(res => {
-			getPlayerInfo().then(res => {
-				setPlayer({ ...player, items: res.items });
+		if (!player.in_battle) {
+			playerRemoveItem(itemId).then(res => {
+				getPlayerInfo().then(res => {
+					setPlayer({ ...player, items: res.items });
+				});
 			});
-		});
+		}		
 	};
 
 	return (
