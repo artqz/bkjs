@@ -67,25 +67,25 @@ const Character = props => {
 			item: [],
 		},
 		{
-			name: 'earringOne',
+			name: 'earring_one',
 			className: 'item itemEarringOne',
 			image: pathItems + '/inventory/earring.png',
 			item: [],
 		},
 		{
-			name: 'earringTwo',
+			name: 'earring_two',
 			className: 'item itemEarringTwo',
 			image: pathItems + '/inventory/earring.png',
 			item: [],
 		},
 		{
-			name: 'ringOne',
+			name: 'ring_one',
 			className: 'item itemRingOne',
 			image: pathItems + '/inventory/ring.png',
 			item: [],
 		},
 		{
-			name: 'ringTwo',
+			name: 'ring_two',
 			className: 'item itemRingTwo',
 			image: pathItems + '/inventory/ring.png',
 			item: [],
@@ -153,7 +153,7 @@ const Slot = props => {
 					setPlayer({ ...player, items: res.items });
 				});
 			});
-		}		
+		}
 	};
 
 	return (
