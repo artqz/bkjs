@@ -6,8 +6,8 @@ import './Bank.css';
 
 const Bank = () => {
 	const { player, setPlayer } = useContext(PlayerContext);
-	const goldItem = player.items.filter(item => item.itemable_type === 'etc')[0];
-
+	const goldItem = player.items.filter(item => item.itemable_type === 'etc' && item.itemable_id === 1)[0];
+	
 	const giveMeMany = () => {
 		getGold().then(res => {
 			getPlayerInfo().then(res => {
