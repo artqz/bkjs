@@ -16,7 +16,7 @@ const Character = props => {
 	} else lineHpColor = 'green';
 
 	const pathAvatars = '/assets/avatars/';
-	const pathItems = '/assets/items/';
+	const pathItems = '/assets/items';
 	const slots = [
 		{
 			name: 'head',
@@ -144,7 +144,7 @@ const Character = props => {
 const Slot = props => {
 	const { player, setPlayer } = useContext(PlayerContext);
 	const { slot } = props;
-	const pathItems = '/assets/items/';
+	const pathItems = '/assets/items';
 
 	const handleOnClick = itemId => {
 		if (!player.in_battle) {

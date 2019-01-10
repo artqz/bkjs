@@ -9,12 +9,10 @@ const Inventory = () => {
 
 	let itemsList = [];
 	//Отсеиваем надетые вещи
-	const notEquipItems = player.items.filter(
-		item => item.slot === null || item.itemable_type === 'etc'
-	);
+	const notEquipItems = player.items.filter(item => item.slot === null);
 
 	//генерируем инвентарь
-	for (let i = 0; i < player.inventory_size; i++) {
+	for (let i = 0; i < player.bag_size; i++) {
 		itemsList.push(0);
 	}
 
