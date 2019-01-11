@@ -19,7 +19,11 @@ const Map = () => {
 			if (player.location_id) {
 				getLocations(player.location_id).then(res => {
 					setLocation(res);
-					setSetting({ ...settings, isLoading: false, exitButton: {} });
+					setSetting({
+						...settings,
+						isLoading: false,
+						exitButton: {},
+					});
 				});
 			}
 		},

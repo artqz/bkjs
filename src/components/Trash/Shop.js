@@ -38,7 +38,10 @@ class Shop extends Component {
 		axios
 			.get(`http://127.0.0.1:8000/api/shops/location/${this.props.location}`)
 			.then(res => {
-				this.setState({ items: res.data.items, shopName: res.data.name });
+				this.setState({
+					items: res.data.items,
+					shopName: res.data.name,
+				});
 			});
 	}
 	componentDidMount() {

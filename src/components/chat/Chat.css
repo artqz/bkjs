@@ -1,12 +1,31 @@
 .chat {
-    color: #bd761d;
-    border-top: 1px solid #ffb00073;
-    background-color: #3e2d2f;
+    color: #000;
+    border-top: 1px solid #bdbdbd;
+    background-color: #ccc;
     position: fixed;
     width: 100%;
     left: 0; 
     bottom: 0;
  
+}
+.chatTabs {
+    position: absolute;
+    top: 0;
+    right: 20px;
+}
+.chatTabs .tab {
+    display: inline-block;
+    font-size: 12px;
+    padding: 5px 10px;
+    color: #454545;
+    background-color: #bdbdbd;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-right: 5px;
+    opacity: .5;
+}
+.chatTabs .tab.active {
+    opacity: 1;
 }
 .chat .loading {
     background-color: #000;
@@ -26,9 +45,9 @@
     padding: 5px 10px;
     font-size: 13px;
     line-height: 1;
-    color: #bd761d;
-    background-color: #0000002e;
-    border: 1px solid #00000080;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #bdbdbd;
 }
 .chat .buttonBox {
     width: 30%;
@@ -51,17 +70,25 @@
     text-align: center;
     margin-left: 4px;
     margin-right: 7px;
-    background-color: #0000004f;
+    color: #454545;
+    background-color: #00000017;
     border-radius: 3px;
     padding: 1px 5px;
 }
 .message .username {
-    color: #e4bc73;
+    color: green;
+    font-weight: bold;
+    font-size: 13px;
+    margin-right: 5px;
+}
+.message .system {
+    color: #ca8300;
+    font-weight: bold;
     font-size: 13px;
     margin-right: 5px;
 }
 .message .text {
-    color: #e4bc73;
+    color: #454545;
     font-size: 13px;
     line-height: 20px;
 }
@@ -71,6 +98,8 @@
 }
 .users .online {
     text-align: center;
+    color: #454545;
+    font-size: 15px;
 }
 .user {
     position: relative;
@@ -87,12 +116,14 @@
 
 }
 .user .username {
-    color: #e4bc73;
+    color: green;
+    font-weight: bold;
     font-size: 13px;
     margin-left: 20px;
     margin-right: 5px;
 }
 .user .level {
-    color: #e4bc73;
+    color: green;
+    font-weight: bold;
     font-size: 13px;
 }

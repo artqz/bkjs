@@ -57,7 +57,7 @@ const Message = props => {
 	return (
 		<div className="message">
 			<span className="date">{moment(message.date).format('HH:mm')}</span>
-			<span className="username">
+			<span className={message.is_system === 1 ? 'system' : 'username'}>
 				{message.is_system ? 'Системное сообщение' : message.sender.name}:
 			</span>
 			<span className="text">{textAndEmoties}</span>
@@ -67,6 +67,7 @@ const Message = props => {
 
 const Chat = () => {
 	const [settings, setSetting] = useState({ isLoading: true });
+	const [tab, setTab] = useState('text');
 	const [users, setUser] = useState([]);
 	const [messages, setMessage] = useState([]);
 	const [form, setValue] = useState({ text: '' });
@@ -97,13 +98,38 @@ const Chat = () => {
 		};
 	}, []);
 
+	const handleClickTab = tabType => {
+		if (tabType === 'text') setTab(tabType);
+		else if (tabType === 'system') setTab(tabType);
+	};
+
+	let messagesFiltered;
+	if (tab === 'text')
+		messagesFiltered = messages.filter(message => message.is_system === 0);
+	else if (tab === 'system')
+		messagesFiltered = messages.filter(message => message.is_system === 1);
+
 	return (
 		<div className="chat">
 			{!settings.isLoading ? (
 				<React.Fragment>
 					<ScrollToBottom className="messages">
-						{messages
-							? messages.map((message, index) => (
+						<div className="chatTabs">
+							<div
+								className={tab === 'text' ? 'tab active' : 'tab'}
+								onClick={() => handleClickTab('text')}
+							>
+								Чат
+							</div>
+							<div
+								className={tab === 'system' ? 'tab active' : 'tab'}
+								onClick={() => handleClickTab('system')}
+							>
+								Системные сообщения
+							</div>
+						</div>
+						{messagesFiltered
+							? messagesFiltered.map((message, index) => (
 									<Message key={index} message={message} />
 							  ))
 							: null}

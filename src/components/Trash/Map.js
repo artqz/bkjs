@@ -41,7 +41,10 @@ class Map extends Component {
 			exitImage.src = '/assets/exit.png';
 			exitImage.onload = () =>
 				this.setState({
-					exitButton: { image: exitImage, location_id: location.location_id },
+					exitButton: {
+						image: exitImage,
+						location_id: location.location_id,
+					},
 				});
 		}
 	}

@@ -47,7 +47,10 @@ const TopBar = () => {
 				>
 					<span
 						className="current"
-						style={{ width: lineCurrentHp + '%', backgroundColor: lineHpColor }}
+						style={{
+							width: lineCurrentHp + '%',
+							backgroundColor: lineHpColor,
+						}}
 					/>
 				</div>
 			</div>
