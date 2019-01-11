@@ -28,8 +28,6 @@ const Pvp = () => {
 		}, 5000);
 		intervalRef.current = id;
 		return () => {
-			console.log(123);
-
 			clearInterval(intervalRef.current);
 		};
 	}, []);

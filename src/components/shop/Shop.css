@@ -59,30 +59,33 @@
 }
 .shopItemDesc {
     display: inline-block;
-    border: 1px solid #000;
-    background-color: #8e8e8e;
+    border: 1px solid #999;
+    background-color: #8e8e8e2b;
     width: 75%;
     font-size: 13px;
     padding: 5px;
 }
 .shopItemDesc .name {
-    color: #fff;
+    color: #000;
 }
 .shopItemDesc .stat {
-    color: #bfbfbf;
+    color: grey;
     font-size: 12px;
 }
+.shopItemDesc .stat .attr {
+    margin-right: 5px;
+}
 .shopItemDesc .stat .value {
-    color: #bd761d;
+    color: green;
 }
 
 .shopItemDesc .price {
     margin-top: 5px;
-    color: #bfbfbf;
+    color: grey;
     font-size: 12px;
 }
 .shopItemDesc .price .value {
-    color: #bd761d;
+    color: #000;
 }
 
 .shopItemBuy {

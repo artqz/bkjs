@@ -76,20 +76,35 @@ const Shop = () => {
 						/>
 					</div>
 					<div className="shopItemDesc">
-						<div className="name">{settings.selectItem.name}</div>
-						<div className="stat">
-							physical attack:{' '}
-							<span className="value">{settings.selectItem.p_atk}</span>
+						<div className="name">{settings.selectItem.name_ru}</div>
+						<div className="stats">
+							{settings.selectItem.itemable_type === 'weapon' ? (
+								<div className="stat">
+									<span className="attr">Ф. Атака:</span>
+									<span className="value">{settings.selectItem.p_atk}</span>
+								</div>
+							) : settings.selectItem.itemable_type === 'armor' ? (
+								<div className="stat">
+									<span className="attr">Ф. Защита:</span>
+									<span className="value">{settings.selectItem.p_def}</span>
+								</div>
+							) : (
+								<div className="stat">
+									<span className="attr">М. Защита:</span>
+									<span className="value">{settings.selectItem.m_def}</span>
+								</div>
+							)}
 						</div>
 						<div className="price">
-							price: <span className="value">{settings.selectItem.price}</span>
+							<span>Цена:</span>{' '}
+							<span className="value">{settings.selectItem.price}</span>
 						</div>
 					</div>
 					<div
 						className="shopItemBuy"
 						onClick={getItem.bind(null, settings.selectItem.id, player.id)}
 					>
-						Buy
+						Купить
 					</div>
 				</div>
 			) : null}
@@ -117,7 +132,7 @@ const Item = props => {
 			<img src={pathItems + item.icon} alt={item.name} />
 		</div>
 	) : (
-		<div className="shopSlot">
+		<div className="shopSlot" data-tip="hello world">
 			<img src={pathItems + '/inventory/free_slot.png'} alt="free slot" />
 		</div>
 	);
