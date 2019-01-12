@@ -36,3 +36,18 @@ export const changeLocation = (playerId, locationId) => {
 			return res.data;
 		});
 };
+
+export const getSpawnNpc = locationId => {
+	const token = getToken();
+	const config = {
+		headers: {
+			Authorization: 'Bearer ' + token,
+			Accept: 'application/json',
+		},
+	};
+	return axios
+		.get(`${process.env.REACT_APP_API_URL}/api/locations/spawn/${locationId}`, config)
+		.then(res => {
+			return res.data;
+		});
+};

@@ -12,6 +12,7 @@ import Pvp from '../components/fights/Pvp';
 import Shop from '../components/shop/Shop';
 import Inventory from '../components/character/Inventory';
 import Bank from '../components/bank/Bank';
+import Area from '../components/area/Area';
 
 import './GamePage.css';
 
@@ -35,6 +36,7 @@ const GamePage = () => {
 					<Map />
 					{locationType === 'arena' ? <Fights /> : null}
 					{locationType === 'bank' ? <Bank /> : null}
+					{locationType === 'area' ? <Area /> : null}
 					{locationType === 'shop' ? (
 						<React.Fragment>
 							<Shop />
