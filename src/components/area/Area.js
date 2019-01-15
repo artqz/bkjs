@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { PlayerContext } from '../../context/PlayerContext';
 import { getSpawnNpc } from '../../actions/LocationActions';
+import { pveCreate } from '../../actions/FightAction';
 
 import './Area.css';
 
@@ -25,11 +26,18 @@ const Area = () => {
 			};
 		},
 		[]
-    );
+	);
+	
+	const handleClickBattle = (npcId) => {
+		pveCreate(npcId).then(res => {
+			console.log('ok');
+			
+		});
+	}
     
     return spawns ? (
-        <div className="area">{spawns.map(spawn => (
-            <div>{spawn.npc.name_ru} [{spawn.npc.hp}] <button>Бой</button></div>
+        <div className="area">{spawns.map((spawn, index) => (
+            <div key={index}>{spawn.npc.name_ru} [{spawn.npc.hp}] <button onClick={() => handleClickBattle(spawn.npc.id)}>Бой</button></div>
         ))}</div>
     ) : null;
 }
