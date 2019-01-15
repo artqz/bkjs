@@ -46,7 +46,10 @@ export const getSpawnNpc = locationId => {
 		},
 	};
 	return axios
-		.get(`${process.env.REACT_APP_API_URL}/api/locations/spawn/${locationId}`, config)
+		.get(
+			`${process.env.REACT_APP_API_URL}/api/locations/spawn/${locationId}`,
+			config
+		)
 		.then(res => {
 			return res.data;
 		});

@@ -70,6 +70,21 @@ export const getGold = () => {
 		});
 };
 
+export const currentBattle = () => {
+	const token = getToken();
+	const config = {
+		headers: {
+			Authorization: 'Bearer ' + token,
+			Accept: 'application/json',
+		},
+	};
+	return axios
+		.get(`${process.env.REACT_APP_API_URL}/api/users/in_battle`, config)
+		.then(res => {
+			return res.data;
+		});
+};
+
 const getToken = () => {
 	return localStorage.getItem('token');
 };

@@ -8,11 +8,11 @@ import MenuBar from '../components/bars/MenuBar';
 import Character from '../components/character/Character';
 import Map from '../components/map/Map';
 import Fights from '../components/fights/Fights';
-import Pvp from '../components/fights/Pvp';
 import Shop from '../components/shop/Shop';
 import Inventory from '../components/character/Inventory';
 import Bank from '../components/bank/Bank';
 import Area from '../components/area/Area';
+import Battle from '../components/fights/Battle';
 
 import './GamePage.css';
 
@@ -28,7 +28,7 @@ const GamePage = () => {
 			<TopBar />
 			{player.in_battle ? (
 				<div className="battleground">
-					<Pvp />
+					<Battle />
 				</div>
 			) : (
 				<div className="playground">

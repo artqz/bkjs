@@ -84,8 +84,8 @@ export const attack = () => {
 };
 
 //pve actions
-export const pveCreate = (npcId) => {
-	const data = {npc_id: npcId};
+export const pveCreate = npcId => {
+	const data = { npc_id: npcId };
 	const token = getToken();
 	const config = {
 		headers: {
@@ -95,6 +95,37 @@ export const pveCreate = (npcId) => {
 	};
 	return axios
 		.post(`${process.env.REACT_APP_API_URL}/api/pve`, data, config)
+		.then(res => {
+			return res.data;
+		});
+};
+
+export const pveCurrent = () => {
+	const token = getToken();
+	const config = {
+		headers: {
+			Authorization: 'Bearer ' + token,
+			Accept: 'application/json',
+		},
+	};
+	return axios
+		.get(`${process.env.REACT_APP_API_URL}/api/pve/current`, config)
+		.then(res => {
+			return res.data;
+		});
+};
+
+export const pveAttack = () => {
+	const data = {};
+	const token = getToken();
+	const config = {
+		headers: {
+			Authorization: 'Bearer ' + token,
+			Accept: 'application/json',
+		},
+	};
+	return axios
+		.post(`${process.env.REACT_APP_API_URL}/api/pve/attack`, data, config)
 		.then(res => {
 			return res.data;
 		});
